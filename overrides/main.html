@@ -1,0 +1,83 @@
+<!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+{% extends "base.html" %}
+
+{% block htmltitle %}
+  <script>
+    // Pages use relative URLs, so "/en" must become "/en/" before assets load.
+    (function (l) {
+      if (!/\/$/.test(l.pathname) && !/\.[a-z0-9]+$/i.test(l.pathname)) {
+        l.replace(l.pathname + "/" + l.search + l.hash);
+      }
+    })(window.location);
+  </script>
+  {{ super() }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const liveReloadScript = document.querySelector('script[src*="livereload.js"]');
+      if (liveReloadScript) {
+        liveReloadScript.parentNode.removeChild(liveReloadScript);
+      }
+    });
+  </script>
+  {% if config.extra.chatbot and config.extra.chatbot.endpoint %}
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/chatbot.css' | url }}">
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <!-- AI assistant (Cloudflare Worker, see /chatbot-worker) -->
+  {% set chatbot = config.extra.chatbot %}
+  {% if chatbot and chatbot.endpoint %}
+    <script>
+      window.GC_CHATBOT = {{ {
+        "endpoint": chatbot.endpoint,
+        "lang": config.theme.language,
+        "siteRoot": base_url ~ "/",
+        "suggestions": chatbot.suggestions or []
+      } | tojson }};
+    </script>
+    <script src="{{ 'assets/javascripts/chatbot.js' | url }}" defer></script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if page.url_to_print_page %}
+    <a href="{{ page.url_to_print_page }}" title="Globitel Connect Manual" class="md-content__button md-icon">
+        {% include ".icons/material/printer.svg" %}
+    </a>
+{% if page.url_to_pdf %}
+    <a href="{{ page.url_to_pdf }}" title="Globitel Connect Manual" class="md-content__button md-icon">
+        {% include ".icons/material/file-pdf-box.svg" %}
+    </a>
+{% endif %}
+{% endif %}
+
+{{ super() }}
+{% endblock content %}

@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "globitel-connect-chatbot",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+  "observability": { "enabled": true },
+
+  // Workers AI (free plan: 10,000 neurons/day)
+  "ai": { "binding": "AI" },
+
+  "vars": {
+    // Any Workers AI text-generation model. Qwen3 30B-A3B is cheap and handles Arabic well.
+    "MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
+    // Sites allowed to call the API (comma separated). Add your preview host if needed.
+    "ALLOWED_ORIGINS": "https://globitel-connect.sonicar.tech,http://localhost:8000,http://127.0.0.1:8000"
+  },
+
+  // 15 questions per minute per visitor IP. Remove this block if your account doesn't support it.
+  "ratelimits": [
+    { "name": "RATE_LIMITER", "namespace_id": "1001", "simple": { "limit": 15, "period": 60 } }
+  ]
+}

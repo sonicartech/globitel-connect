@@ -1,0 +1,168 @@
+site_name: Globitel Connect
+site_url: https://globitel-connect.sonicar.tech/en/
+site_author: Globitel
+site_description: The complete user manual for globitel connect software
+docs_dir: docs/en
+site_dir: en
+# Home/homepage.md only redirects to the home page (keeps old links working)
+not_in_nav: |
+  /Home/homepage.md
+theme:
+  name: material
+  custom_dir: overrides
+  logo: ./assets/logo.png
+  favicon: ./assets/favicon.gif
+  language: en
+  features:
+    - navigation.footer
+    # - navigation.instant
+    # - navigation.indexes
+    # - navigation.tabs
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - search.share
+    # - header.autohide
+    - navigation.top
+    - toc.follow
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.tracking
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: globitel-connect
+      accent: blue
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      accent: blue
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  font:
+    text: Open Sans
+
+plugins:
+  - search
+  - glightbox
+  - open-in-new-tab
+  - tags
+  - autolinks
+  - print-site:
+      add_cover_page: true
+      cover_page_template: "docs/en/assets/templates/custom_cover_page.tpl"
+      path_to_pdf: "./assets/Globitel-Connect-Eng.pdf"
+      print_page_title: 'Globitel'
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  # - markdown_include.include:
+  #     base_path: docs
+
+extra:
+  # AI assistant served by the Cloudflare Worker in ./chatbot-worker.
+  # GC_CHATBOT_ENDPOINT overrides the URL (e.g. http://localhost:8787 for local dev).
+  # Set it to an empty string to hide the assistant.
+  chatbot:
+    endpoint: !ENV [GC_CHATBOT_ENDPOINT, "https://globitel-connect-chatbot.sonicar.workers.dev"]
+    suggestions:
+      - How do I log in?
+      - How do I transfer a call?
+      - How can I share my screen?
+      - How do I change my password?
+  analytics:
+    provider: google
+    property: G-VVMFJJX2G0
+    feedback:
+      title: Helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="https://forms.gle/aD13KAwxMpaswxTy8" target="_blank" rel="noopener">feedback form</a>.
+  alternate:
+    - name: 🇺🇸 English
+      link: /en/
+      lang: en
+    - name: 🇸🇦 العربية
+      link: /ar/
+      lang: ar
+  social:
+  - icon: fontawesome/solid/envelope
+    link: mailto:info@globitel.com
+  - icon: fontawesome/brands/facebook
+    link: https://www.facebook.com/Globitel.solutions
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/globitel_int
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/company/globitel
+  - icon: fontawesome/brands/instagram
+    link: https://www.instagram.com/globitel_int/
+  - icon: fontawesome/brands/youtube
+    link: https://www.youtube.com/channel/UCZdq3XKSHNp2_utEKyf-FAg
+
+extra_css:
+  - assets/stylesheets/extra.css
+  - assets/stylesheets/navigation.css
+
+nav:
+  - 'Home': './index.md'
+  - 'Getting Started':
+    - 'Login': './Getting-started/Login.md'
+    - 'Share Screen': './Getting-started/Share-screen.md'
+    - 'My Dashboard': './Getting-started/My-dashboard.md'
+    - 'Testing Your Microphone & Camera': './Getting-started/Testing-your-camera-and-microphone.md'
+    - 'Interaction History': './Getting-started/Interaction-history.md'
+    - 'Appointments': './Getting-started/Appointments.md'
+    - 'Getting Ready For Engagements': './Getting-started/Getting-ready-for-engagements.md'
+  - 'Handling Interactions':
+    - 'Receiving a New Interaction': './Handling-Interactions/Receiving-a-new-interaction.md'
+    - 'Conference Room Functions': './Handling-Interactions/Conference-room-functions.md'
+    - 'Call Transfer': './Handling-Interactions/Call-Transfer.md'
+    - 'Change Background and Blur': './Handling-Interactions/Change-background-and-blur.md'
+    - 'Screen Sharing': './Handling-Interactions/Screen-sharing.md'
+    - 'Chat': './Handling-Interactions/Chat.md'
+    - 'Exchanging Documents': './Handling-Interactions/Exchanging-documents.md'
+  - 'Customer Access':
+    - 'Requesting a Meeting': './Customer-Access/Requesting-a-Meeting.md'
+    - 'Starting a Meeting': './Customer-Access/Starting-a-Meeting.md'
+  - 'My Profile':
+    - 'Modify Profile Photo': './My-profile/Modify-profile-photo.md'
+    - 'Change Password': './My-profile/Change-password.md'
+  - 'Real Time Monitor (Supervisors)':
+    - 'Track Agents Performance': './Real-Time-Monitor/Track-agents-performance.md'
+    - 'Monitoring Team Interactions & Appointments': './Real-Time-Monitor/Monitoring-current-interactions.md'
+  - 'Administration':
+    - 'Login': './Administration/log-in.md'
+    - 'My Dashboard': './Administration/My-Dashboard.md'
+    - 'User Management':
+      - 'Roles Management': './Administration/User-Management/Roles-Management.md'
+      - 'Teams Management': './Administration/User-Management/Teams-Management.md'
+      - 'Skills Management': './Administration/User-Management/Skills-Management.md'
+      - 'Users Management': './Administration/User-Management/Users-Management.md'
+      - 'Change Password': './Administration/User-Management/Change-Password.md'
+    - 'System Management':
+      - 'System Settings': './Administration/System-Management/System-Settings.md'
+      - 'Customer Form': './Administration/System-Management/Customer-Form.md'
+      - 'Routing Rules': './Administration/System-Management/Routing-Rules.md'
+    - 'About System': './Administration/About-System.md'
+  - 'FAQs': './FAQs/FAQs.md'

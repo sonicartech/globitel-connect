@@ -1,0 +1,102 @@
+# Arabic site. Shares theme, extensions, styles and social links with mkdocs.yml
+INHERIT: mkdocs.yml
+
+site_name: جلوبيتل كونكت
+site_url: https://globitel-connect.sonicar.tech/ar/
+site_author: جلوبيتل
+site_description: دليل المستخدم الكامل لنظام جلوبيتل كونكت
+docs_dir: docs/ar
+site_dir: ar
+
+theme:
+  language: ar
+  font:
+    text: Rubik
+  features:
+    - navigation.footer
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - search.share
+    - navigation.top
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: globitel-connect
+      accent: blue
+      toggle:
+        icon: material/lightbulb
+        name: التبديل إلى الوضع الداكن
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      accent: blue
+      toggle:
+        icon: material/lightbulb-outline
+        name: التبديل إلى الوضع الفاتح
+
+plugins:
+  - search:
+      lang: ar
+  - glightbox
+  - open-in-new-tab
+  - tags
+  - autolinks
+  - print-site:
+      print_page_title: 'جلوبيتل كونكت'
+      toc_title: 'جدول المحتويات'
+      add_cover_page: true
+      cover_page_template: "docs/ar/assets/templates/custom_cover_page.tpl"
+      path_to_pdf: "./assets/Globitel-Connect-Manual-Arabic-V-1.0.0.pdf"
+
+extra:
+  chatbot:
+    suggestions:
+      - كيف أسجل الدخول؟
+      - كيف أحول المكالمة؟
+      - كيف أشارك شاشتي؟
+      - كيف أغير كلمة المرور؟
+  analytics:
+    feedback:
+      title: هل كان المحتوي مفيد؟
+      ratings:
+        - icon: material/thumb-up-outline
+          name: نعم
+          data: 1
+          note: >-
+            شكرًا على التقييم!
+        - icon: material/thumb-down-outline
+          name: يحتاج تحسين
+          data: 0
+          note: >-
+            شكرًا على الإفادة! يمكنك مساعدتنا عن طريق توضيح ملاحظاتكم
+            من خلال <a href="https://forms.gle/aD13KAwxMpaswxTy8" target="_blank" rel="noopener">نموذج التقييم هنا</a>.
+
+# The Administration section is documented in English only.
+nav:
+  - 'الرئيسية': './index.md'
+  - 'الإنطلاقة':
+    - 'تسجيل الدخول': './Getting-started/Login.md'
+    - 'السماح بمشاركة الشاشة': './Getting-started/Share-screen.md'
+    - 'لوحة القيادة': './Getting-started/My-dashboard.md'
+    - 'أختبر الكاميرا والميكرفون': './Getting-started/Testing-your-camera-and-microphone.md'
+    - 'سجل المكالمات': './Getting-started/Interaction-history.md'
+    - 'سجل المواعيد': './Getting-started/Appointments.md'
+    - 'جاهز لإستقبال مكالمات': './Getting-started/Getting-ready-for-engagements.md'
+  - 'التفاعل مع العملاء':
+    - 'إستقبال مكالمة': './Handling-Interactions/Receiving-a-new-interaction.md'
+    - 'وظائف غرفة الإجتماع': './Handling-Interactions/Conference-room-functions.md'
+    - 'تحويل المكالمة': './Handling-Interactions/Call-Transfer.md'
+    - 'تغيير خلفية الكاميرا': './Handling-Interactions/Change-background-and-blur.md'
+    - 'مشاركة الشاشة': './Handling-Interactions/Screen-sharing.md'
+    - 'المحادثة': './Handling-Interactions/Chat.md'
+    - 'تبادل الوثائق والملفات': './Handling-Interactions/Exchanging-documents.md'
+  - 'تفاعلات العملاء':
+    - 'حجز/إجراء مكالمة': './Customer-Access/Requesting-a-Meeting.md'
+    - 'بداء التفاعل مع الوكيل': './Customer-Access/Starting-a-Meeting.md'
+  - 'ملفي الشخصي':
+    - 'تغيير صورتي الشخصية': './My-profile/Modify-profile-photo.md'
+    - 'تغيير كلمة المرور': './My-profile/Change-password.md'
+  - 'مراقبة الفريق (للمشرفين)':
+    - 'تتبع أداء الفريق': './Real-Time-Monitor/Track-agents-performance.md'
+    - 'تتبع تفاعلات ومواعيد الفريق': './Real-Time-Monitor/Monitoring-current-interactions.md'
+  - 'الأسئلة الشائعة': './FAQs/FAQs.md'

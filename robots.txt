@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://globitel-connect.sonicar.tech/en/sitemap.xml
+Sitemap: https://globitel-connect.sonicar.tech/ar/sitemap.xml

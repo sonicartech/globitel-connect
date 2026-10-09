@@ -1,0 +1,4655 @@
+<!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+<!doctype html>
+<html lang="ar" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="دليل المستخدم الكامل لنظام جلوبيتل كونكت">
+      
+      
+        <meta name="author" content="جلوبيتل">
+      
+      
+        <link rel="canonical" href="https://globitel-connect.sonicar.tech/ar/print_page/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/favicon.gif">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+  <script>
+    // Pages use relative URLs, so "/en" must become "/en/" before assets load.
+    (function (l) {
+      if (!/\/$/.test(l.pathname) && !/\.[a-z0-9]+$/i.test(l.pathname)) {
+        l.replace(l.pathname + "/" + l.search + l.hash);
+      }
+    })(window.location);
+  </script>
+  
+      
+        <title>جلوبيتل كونكت - جلوبيتل كونكت</title>
+      
+    
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Custom admonition icons -->
+
+
+<!-- Custom annotation icon -->
+
+
+<!-- Custom tag icons -->
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Rubik";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../assets/stylesheets/navigation.css">
+    
+    <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!--
+  A collection of functions used from within some partials to allow the usage
+  of state saved in local or session storage, e.g. to model preferences.
+-->
+<script>
+
+  /* Compute base path once to integrate with instant loading */
+  __md_scope = new URL("/ar/", location)
+
+  /* Compute hash from the given string - see https://bit.ly/3pvPjXG */
+  __md_hash = v => [...v].reduce((h, c) => (h << 5) - h + c.charCodeAt(0), 0)
+
+  /* Fetch the value for a key from the given storage */
+  __md_get = (key, storage = localStorage, scope = __md_scope) => (
+    JSON.parse(storage.getItem(scope.pathname + "." + key))
+  )
+
+  /* Persist a key-value pair in the given storage */
+  __md_set = (key, value, storage = localStorage, scope = __md_scope) => {
+    try {
+      storage.setItem(scope.pathname + "." + key, JSON.stringify(value))
+    } catch (err) {
+      /* Uncritical, just swallow */
+    }
+  }
+</script>
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine analytics provider -->
+
+  
+
+
+<!-- Set up analytics provider -->
+
+  <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine analytics property -->
+
+  
+
+
+<!-- Integrate with Google Analytics 4 -->
+<script id="__analytics">
+  function __md_analytics() {
+    window.dataLayer = window.dataLayer || []
+    function gtag() { dataLayer.push(arguments) }
+
+    /* Set up integration and send page view */
+    gtag("js", new Date())
+    gtag("config", "G-VVMFJJX2G0")
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+
+      /* Set up search tracking */
+      if (document.forms.search) {
+        var query = document.forms.search.query
+        query.addEventListener("blur", function() {
+          if (this.value)
+            gtag("event", "search", { search_term: this.value })
+        })
+      }
+
+      /* Set up feedback, i.e. "Was this page helpful?" */
+      document$.subscribe(function() {
+        var feedback = document.forms.feedback
+        if (typeof feedback === "undefined")
+          return
+
+        /* Send feedback to Google Analytics */
+        for (var button of feedback.querySelectorAll("[type=submit]")) {
+          button.addEventListener("click", function(ev) {
+            ev.preventDefault()
+
+            /* Retrieve and send data */
+            var page = document.location.pathname
+            var data = this.getAttribute("data-md-value")
+            gtag("event", "feedback", { page, data })
+
+            /* Disable form and show note, if given */
+            feedback.firstElementChild.disabled = true
+            var note = feedback.querySelector(
+              ".md-feedback__note [data-md-value='" + data + "']"
+            )
+            if (note)
+              note.hidden = false
+          })
+
+          /* Show feedback */
+          feedback.hidden = false
+        }
+      })
+
+      /* Send page view on location change */
+      location$.subscribe(function(url) {
+        gtag("config", "G-VVMFJJX2G0", {
+          page_path: url.pathname
+        })
+      })
+    })
+
+    /* Create script tag */
+    var script = document.createElement("script")
+    script.async = true
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-VVMFJJX2G0"
+
+    /* Inject script tag */
+    var container = document.getElementById("__analytics")
+    container.insertAdjacentElement("afterEnd", script)
+  }
+</script>
+
+  <!-- Consent necessary -->
+  
+    <script>
+      if (typeof __md_analytics !== "undefined")
+        __md_analytics()
+    </script>
+  
+
+    
+    
+    
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const liveReloadScript = document.querySelector('script[src*="livereload.js"]');
+      if (liveReloadScript) {
+        liveReloadScript.parentNode.removeChild(liveReloadScript);
+      }
+    });
+  </script>
+  
+    <link rel="stylesheet" href="../assets/stylesheets/chatbot.css">
+  
+
+  
+        <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            remove_material_navigation();remove_mkdocs_theme_navigation();generate_toc();
+        })
+        </script>
+        </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="rtl" data-md-color-scheme="globitel-connect" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#" class="md-skip">
+          انتقل إلى المحتوى
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="عنوان العارضة"
+  >
+    <!-- Link to home -->
+    <a
+      href=".."
+      title="جلوبيتل كونكت"
+      class="md-header__button md-logo"
+      aria-label="جلوبيتل كونكت"
+      data-md-component="logo"
+    >
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Logo -->
+
+  <img src="../assets/logo.png" alt="logo" />
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            جلوبيتل كونكت
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              جلوبيتل كونكت
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Color palette toggle -->
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input
+      class="md-option"
+      data-md-color-media="(prefers-color-scheme: light)"
+      data-md-color-scheme="globitel-connect"
+      data-md-color-primary="indigo"
+      data-md-color-accent="blue"
+      
+        aria-label="التبديل إلى الوضع الداكن"
+      
+      type="radio"
+      name="__palette"
+      id="__palette_0"
+    />
+    
+      <label
+        class="md-header__button md-icon"
+        title="التبديل إلى الوضع الداكن"
+        for="__palette_1"
+        hidden
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input
+      class="md-option"
+      data-md-color-media="(prefers-color-scheme: dark)"
+      data-md-color-scheme="slate"
+      data-md-color-primary="indigo"
+      data-md-color-accent="blue"
+      
+        aria-label="التبديل إلى الوضع الفاتح"
+      
+      type="radio"
+      name="__palette"
+      id="__palette_1"
+    />
+    
+      <label
+        class="md-header__button md-icon"
+        title="التبديل إلى الوضع الفاتح"
+        for="__palette_0"
+        hidden
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- User preference: color palette -->
+<script>
+  var palette = __md_get("__palette")
+  if (palette && palette.color) {
+
+    /* Retrieve color palette for system preference */
+    if (palette.color.media === "(prefers-color-scheme)") {
+      var media = matchMedia("(prefers-color-scheme: light)")
+      var input = document.querySelector(media.matches
+        ? "[data-md-color-media='(prefers-color-scheme: light)']"
+        : "[data-md-color-media='(prefers-color-scheme: dark)']"
+      )
+
+      /* Retrieve colors for system preference */
+      palette.color.media   = input.getAttribute("data-md-color-media"),
+      palette.color.scheme  = input.getAttribute("data-md-color-scheme"),
+      palette.color.primary = input.getAttribute("data-md-color-primary"),
+      palette.color.accent  = input.getAttribute("data-md-color-accent")
+    }
+
+    /* Set color palette */
+    for (var [key, value] of Object.entries(palette.color))
+      document.body.setAttribute("data-md-color-" + key, value)
+  }
+</script>
+    
+
+    <!-- Site language selector -->
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Site language switch: one-tap link to the same page in the other language -->
+
+
+
+<div class="md-header__option gc-lang">
+  
+    
+    <a
+      href="/en/print_page/"
+      hreflang="en"
+      lang="en"
+      class="gc-lang__link"
+      title="English"
+      aria-label="English"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+      <span class="gc-lang__label">English</span>
+    </a>
+  
+</div>
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+
+      <!-- Search interface -->
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Search interface -->
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+
+      <!-- Search input -->
+      <input
+        type="text"
+        class="md-search__input"
+        name="query"
+        aria-label="بحث"
+        placeholder="بحث"
+        autocapitalize="off"
+        autocorrect="off"
+        autocomplete="off"
+        spellcheck="false"
+        data-md-component="search-query"
+        required
+      />
+
+      <!-- Button to open search -->
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+
+      <!-- Search options -->
+      <nav
+        class="md-search__options"
+        aria-label="إبحث"
+      >
+
+        <!-- Button to share search -->
+        
+          <a
+            href="javascript:void(0)"
+            class="md-search__icon md-icon"
+            title="شارك"
+            aria-label="شارك"
+            data-clipboard
+            data-clipboard-text=""
+            data-md-component="search-share"
+            tabindex="-1"
+          >
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+
+        <!-- Button to reset search -->
+        <button
+          type="reset"
+          class="md-search__icon md-icon"
+          title="مسح كلي"
+          aria-label="مسح كلي"
+          tabindex="-1"
+        >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+
+      <!-- Search suggestions -->
+      
+        <div
+          class="md-search__suggest"
+          data-md-component="search-suggest"
+        ></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+
+        <!-- Search results -->
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            بدء البحث
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Determine classes -->
+
+
+
+
+<!-- Navigation -->
+<nav
+  class="md-nav md-nav--primary"
+  aria-label="تصفح"
+  data-md-level="0"
+>
+
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href=".."
+      title="جلوبيتل كونكت"
+      class="md-nav__button md-logo"
+      aria-label="جلوبيتل كونكت"
+      data-md-component="logo"
+    >
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Logo -->
+
+  <img src="../assets/logo.png" alt="logo" />
+
+    </a>
+    جلوبيتل كونكت
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Navigation list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    الرئيسية
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+
+    <!-- Determine all nested items that are index pages -->
+    
+    
+
+    <!-- Navigation tabs -->
+    
+
+    <!-- Navigation pruning -->
+    
+
+    <!-- Nested navigation item -->
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+
+        <!-- Determine checked and indeterminate state -->
+        
+
+        <!-- Active checkbox expands items contained within nested section -->
+        <input
+          class="md-nav__toggle md-toggle "
+          type="checkbox"
+          id="__nav_2"
+          
+        />
+
+        <!-- Toggle to expand nested items -->
+        
+          
+          <label
+            class="md-nav__link"
+            for="__nav_2"
+            id="__nav_2_label"
+            tabindex="0"
+          >
+            
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    الإنطلاقة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+
+        <!-- Toggle to expand nested items with link to index page -->
+        
+
+        <!-- Nested navigation -->
+        <nav
+          class="md-nav"
+          data-md-level="1"
+          aria-labelledby="__nav_2_label"
+          aria-expanded="false"
+        >
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            الإنطلاقة
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+
+            <!-- Nested navigation item -->
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/Login/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تسجيل الدخول
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/Share-screen/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    السماح بمشاركة الشاشة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/My-dashboard/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    لوحة القيادة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/Testing-your-camera-and-microphone/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    أختبر الكاميرا والميكرفون
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/Interaction-history/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    سجل المكالمات
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/Appointments/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    سجل المواعيد
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Getting-started/Getting-ready-for-engagements/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    جاهز لإستقبال مكالمات
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+
+      <!-- Pruned navigation item -->
+      
+    </li>
+
+  <!-- Currently active page -->
+  
+
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+
+    <!-- Determine all nested items that are index pages -->
+    
+    
+
+    <!-- Navigation tabs -->
+    
+
+    <!-- Navigation pruning -->
+    
+
+    <!-- Nested navigation item -->
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+
+        <!-- Determine checked and indeterminate state -->
+        
+
+        <!-- Active checkbox expands items contained within nested section -->
+        <input
+          class="md-nav__toggle md-toggle "
+          type="checkbox"
+          id="__nav_3"
+          
+        />
+
+        <!-- Toggle to expand nested items -->
+        
+          
+          <label
+            class="md-nav__link"
+            for="__nav_3"
+            id="__nav_3_label"
+            tabindex="0"
+          >
+            
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    التفاعل مع العملاء
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+
+        <!-- Toggle to expand nested items with link to index page -->
+        
+
+        <!-- Nested navigation -->
+        <nav
+          class="md-nav"
+          data-md-level="1"
+          aria-labelledby="__nav_3_label"
+          aria-expanded="false"
+        >
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            التفاعل مع العملاء
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+
+            <!-- Nested navigation item -->
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Receiving-a-new-interaction/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    إستقبال مكالمة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Conference-room-functions/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    وظائف غرفة الإجتماع
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Call-Transfer/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تحويل المكالمة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Change-background-and-blur/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تغيير خلفية الكاميرا
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Screen-sharing/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    مشاركة الشاشة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Chat/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    المحادثة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Handling-Interactions/Exchanging-documents/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تبادل الوثائق والملفات
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+
+      <!-- Pruned navigation item -->
+      
+    </li>
+
+  <!-- Currently active page -->
+  
+
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+
+    <!-- Determine all nested items that are index pages -->
+    
+    
+
+    <!-- Navigation tabs -->
+    
+
+    <!-- Navigation pruning -->
+    
+
+    <!-- Nested navigation item -->
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+
+        <!-- Determine checked and indeterminate state -->
+        
+
+        <!-- Active checkbox expands items contained within nested section -->
+        <input
+          class="md-nav__toggle md-toggle "
+          type="checkbox"
+          id="__nav_4"
+          
+        />
+
+        <!-- Toggle to expand nested items -->
+        
+          
+          <label
+            class="md-nav__link"
+            for="__nav_4"
+            id="__nav_4_label"
+            tabindex="0"
+          >
+            
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تفاعلات العملاء
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+
+        <!-- Toggle to expand nested items with link to index page -->
+        
+
+        <!-- Nested navigation -->
+        <nav
+          class="md-nav"
+          data-md-level="1"
+          aria-labelledby="__nav_4_label"
+          aria-expanded="false"
+        >
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            تفاعلات العملاء
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+
+            <!-- Nested navigation item -->
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Customer-Access/Requesting-a-Meeting/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    حجز/إجراء مكالمة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Customer-Access/Starting-a-Meeting/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    بداء التفاعل مع الوكيل
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+
+      <!-- Pruned navigation item -->
+      
+    </li>
+
+  <!-- Currently active page -->
+  
+
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+
+    <!-- Determine all nested items that are index pages -->
+    
+    
+
+    <!-- Navigation tabs -->
+    
+
+    <!-- Navigation pruning -->
+    
+
+    <!-- Nested navigation item -->
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+
+        <!-- Determine checked and indeterminate state -->
+        
+
+        <!-- Active checkbox expands items contained within nested section -->
+        <input
+          class="md-nav__toggle md-toggle "
+          type="checkbox"
+          id="__nav_5"
+          
+        />
+
+        <!-- Toggle to expand nested items -->
+        
+          
+          <label
+            class="md-nav__link"
+            for="__nav_5"
+            id="__nav_5_label"
+            tabindex="0"
+          >
+            
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    ملفي الشخصي
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+
+        <!-- Toggle to expand nested items with link to index page -->
+        
+
+        <!-- Nested navigation -->
+        <nav
+          class="md-nav"
+          data-md-level="1"
+          aria-labelledby="__nav_5_label"
+          aria-expanded="false"
+        >
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ملفي الشخصي
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+
+            <!-- Nested navigation item -->
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../My-profile/Modify-profile-photo/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تغيير صورتي الشخصية
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../My-profile/Change-password/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تغيير كلمة المرور
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+
+      <!-- Pruned navigation item -->
+      
+    </li>
+
+  <!-- Currently active page -->
+  
+
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+
+    <!-- Determine all nested items that are index pages -->
+    
+    
+
+    <!-- Navigation tabs -->
+    
+
+    <!-- Navigation pruning -->
+    
+
+    <!-- Nested navigation item -->
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+
+        <!-- Determine checked and indeterminate state -->
+        
+
+        <!-- Active checkbox expands items contained within nested section -->
+        <input
+          class="md-nav__toggle md-toggle "
+          type="checkbox"
+          id="__nav_6"
+          
+        />
+
+        <!-- Toggle to expand nested items -->
+        
+          
+          <label
+            class="md-nav__link"
+            for="__nav_6"
+            id="__nav_6_label"
+            tabindex="0"
+          >
+            
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    مراقبة الفريق (للمشرفين)
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+
+        <!-- Toggle to expand nested items with link to index page -->
+        
+
+        <!-- Nested navigation -->
+        <nav
+          class="md-nav"
+          data-md-level="1"
+          aria-labelledby="__nav_6_label"
+          aria-expanded="false"
+        >
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            مراقبة الفريق (للمشرفين)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+
+            <!-- Nested navigation item -->
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Real-Time-Monitor/Track-agents-performance/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تتبع أداء الفريق
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../Real-Time-Monitor/Monitoring-current-interactions/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    تتبع تفاعلات ومواعيد الفريق
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+
+      <!-- Pruned navigation item -->
+      
+    </li>
+
+  <!-- Currently active page -->
+  
+
+    
+      
+      
+
+  <!-- Determine classes -->
+  
+  
+
+  <!-- Determine active page for paginated views -->
+  
+
+  <!-- Navigation item with nested items -->
+  
+    <li class="md-nav__item">
+      <a href="../FAQs/FAQs/" class="md-nav__link">
+        
+
+  <!-- Navigation link icon -->
+  
+
+  <!-- Navigation link title -->
+  <span class="md-ellipsis">
+    الأسئلة الشائعة
+  </span>
+
+  <!-- Navigation link status -->
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="جدول المحتويات">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      جدول المحتويات
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. الرئيسية
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#section-الإنطلاقة" class="md-nav__link">
+    <span class="md-ellipsis">
+      I. الإنطلاقة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+    <nav class="md-nav" aria-label="I. الإنطلاقة">
+      <ul class="md-nav__list">
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. تسجيل الدخول
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-share-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. السماح بمشاركة الشاشة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-my-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. لوحة القيادة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-testing-your-camera-and-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. أختبر الكاميرا والميكرفون
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-interaction-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. سجل المكالمات
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-appointments" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. سجل المواعيد
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#getting-started-getting-ready-for-engagements" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. جاهز لإستقبال مكالمات
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#section-التفاعل-مع-العملاء" class="md-nav__link">
+    <span class="md-ellipsis">
+      II. التفاعل مع العملاء
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+    <nav class="md-nav" aria-label="II. التفاعل مع العملاء">
+      <ul class="md-nav__list">
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-receiving-a-new-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. إستقبال مكالمة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-conference-room-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. وظائف غرفة الإجتماع
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-call-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. تحويل المكالمة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-change-background-and-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. تغيير خلفية الكاميرا
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-screen-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. مشاركة الشاشة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. المحادثة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-interactions-exchanging-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. تبادل الوثائق والملفات
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#section-تفاعلات-العملاء" class="md-nav__link">
+    <span class="md-ellipsis">
+      III. تفاعلات العملاء
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+    <nav class="md-nav" aria-label="III. تفاعلات العملاء">
+      <ul class="md-nav__list">
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customer-access-requesting-a-meeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. حجز/إجراء مكالمة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customer-access-starting-a-meeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. بداء التفاعل مع الوكيل
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#section-ملفي-الشخصي" class="md-nav__link">
+    <span class="md-ellipsis">
+      IV. ملفي الشخصي
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+    <nav class="md-nav" aria-label="IV. ملفي الشخصي">
+      <ul class="md-nav__list">
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#my-profile-modify-profile-photo" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. تغيير صورتي الشخصية
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#my-profile-change-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. تغيير كلمة المرور
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#section-مراقبة-الفريق-للمشرفين-" class="md-nav__link">
+    <span class="md-ellipsis">
+      V. مراقبة الفريق (للمشرفين)
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+    <nav class="md-nav" aria-label="V. مراقبة الفريق (للمشرفين)">
+      <ul class="md-nav__list">
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#real-time-monitor-track-agents-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. تتبع أداء الفريق
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#real-time-monitor-monitoring-current-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      21. تتبع تفاعلات ومواعيد الفريق
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#faqs-faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      22. الأسئلة الشائعة
+    </span>
+  </a>
+
+  <!-- Table of contents list -->
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+
+
+                  <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Tags -->
+
+
+<!-- Actions -->
+<!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Actions -->
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+
+<!-- Page content -->
+<div id="print-site-page" class="print-site-enumerate-headings print-site-enumerate-figures">
+        <section id="print-site-cover-page">
+            <div>
+
+    
+        <h1>جلوبيتل كونكت</h1>
+    
+    <img src="../assets/logo-dark.png" />
+</div>
+
+
+<table>
+
+    
+    <tr>
+        <td>الوصف</td>
+        <td>دليل المستخدم الكامل لنظام جلوبيتل كونكت</td>
+    </tr>
+    
+
+    
+    <tr>
+        <td>المؤلف</td>
+        <td>جلوبيتل</td>
+    </tr>
+    
+
+    
+
+</table>
+        </section>
+        
+        <section class="print-page">
+            <div id="print-page-toc" data-toc-depth="3">
+                <nav role='navigation' class='print-page-toc-nav'>
+                <h1 class='print-page-toc-title'>جدول المحتويات</h1>
+                </nav>
+            </div>
+        </section>
+        <section class="print-page" id="index"><div class="gc-hero">
+<p><span class="gc-hero__eyebrow">دليل المستخدم</span></p>
+<h1 id="index-_1">مركز مساعدة جلوبيتل كونكت</h1>
+<p>كل ما تحتاجه لإدارة تفاعلات الفيديو مع جلوبيتل كونكت: من تسجيل الدخول لأول مرة إلى التعامل مع المكالمات ومتابعة أداء فريقك.</p>
+</div>
+<div class="grid cards gc-cards">
+<ul>
+<li>
+<p><span class="twemoji gc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27l-2.77 6.1M5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M19.22 4c.28 0 .53 0 .74.05.17 1.39-.02 4.25-3.3 7.53-1.7 1.71-3.73 3.02-6.01 3.89l-2.15-2.1c.92-2.31 2.23-4.34 3.92-6.03C15.18 4.58 17.64 4 19.22 4m0-2c-1.98 0-4.98.69-8.22 3.93-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.38.38.89.61 1.42.61.23 0 .47-.06.7-.15A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61S20.7 2 19.22 2m-4.68 7.46c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83-.78.78-2.05.78-2.83 0m-5.66 7.07-1.41-1.41 1.41 1.41M6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22h1.41M2 22h1.41l4.77-4.76-1.42-1.41L2 20.59V22m0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76v1.41Z"/></svg></span> <span class="gc-badge">موظفو خدمة العملاء</span></p>
+<p><strong class="gc-title">الإنطلاقة</strong></p>
+<hr />
+<p>تعرف على النظام وعلى كيفية إستخدامه لأول مرة.</p>
+<p><a class="gc-link" href="#getting-started-login">عرض الدليل</a></p>
+</li>
+<li>
+<p><span class="twemoji gc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1c-5 0-9 4-9 9v7a3 3 0 0 0 3 3h3v-8H5v-2a7 7 0 0 1 7-7 7 7 0 0 1 7 7v2h-4v8h4v1h-7v2h6a3 3 0 0 0 3-3V10c0-5-4.03-9-9-9Z"/></svg></span> <span class="gc-badge">موظفو خدمة العملاء</span></p>
+<p><strong class="gc-title">التفاعل مع العملاء</strong></p>
+<hr />
+<p>تعلم كيفية التعامل مع تفاعلات العملاء وجميع الإجراءات المتعلقة بذلك.</p>
+<p><a class="gc-link" href="#handling-interactions-receiving-a-new-interaction">عرض الدليل</a></p>
+</li>
+<li>
+<p><span class="twemoji gc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 5a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c2.67 0 8 1.34 8 4v2H1v-2c0-2.66 5.33-4 8-4m7.76-9.64c2.02 2.2 2.02 5.25 0 7.27l-1.68-1.69c.84-1.18.84-2.71 0-3.89l1.68-1.69M20.07 2c3.93 4.05 3.9 10.11 0 14l-1.63-1.63c2.77-3.18 2.77-7.72 0-10.74L20.07 2Z"/></svg></span> <span class="gc-badge">العملاء</span></p>
+<p><strong class="gc-title">تفاعلات العملاء</strong></p>
+<hr />
+<p>تعرّف على ما سيراه العملاء عندما يتفاعلون معك من خلال النظام.</p>
+<p><a class="gc-link" href="#customer-access-requesting-a-meeting">عرض الدليل</a></p>
+</li>
+<li>
+<p><span class="twemoji gc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"/></svg></span></p>
+<p><strong class="gc-title">ملفي الشخصي</strong></p>
+<hr />
+<p>إدارة أو تعديل التفاصيل المتعلقة بملفك الشخصي.</p>
+<p><a class="gc-link" href="#my-profile-modify-profile-photo">عرض الدليل</a></p>
+</li>
+<li>
+<p><span class="twemoji gc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16V4H3v12h18m0-14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7v2h2v2H8v-2h2v-2H3a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2h18M5 6h9v5H5V6m10 0h4v2h-4V6m4 3v5h-4V9h4M5 12h4v2H5v-2m5 0h4v2h-4v-2Z"/></svg></span> <span class="gc-badge">المشرفون</span></p>
+<p><strong class="gc-title">مراقبة الفريق</strong></p>
+<hr />
+<p>كيف تُدير فريقك وتحصل على رؤية كاملة لأنشطة مركز الاتصال في الوقت الفعلي.</p>
+<p><a class="gc-link" href="#real-time-monitor-track-agents-performance">عرض الدليل</a></p>
+</li>
+<li>
+<p><span class="twemoji gc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 15H6l-4 4V3a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1m5-6v14l-4-4H8a1 1 0 0 1-1-1v-1h14V8h1a1 1 0 0 1 1 1M8.19 4c-.87 0-1.57.2-2.11.59-.52.41-.78.98-.77 1.77l.01.03h1.93c.01-.3.1-.53.28-.69a1 1 0 0 1 .66-.23c.31 0 .57.1.75.28.18.19.26.45.26.75 0 .32-.07.59-.23.82-.14.23-.35.43-.61.59-.51.34-.86.64-1.05.91C7.11 9.08 7 9.5 7 10h2c0-.31.04-.56.13-.74.09-.18.26-.36.51-.52.45-.24.82-.53 1.11-.93.29-.4.44-.81.44-1.31 0-.76-.27-1.37-.81-1.82C9.85 4.23 9.12 4 8.19 4M7 11v2h2v-2H7m6 2h2v-2h-2v2m0-9v6h2V4h-2Z"/></svg></span></p>
+<p><strong class="gc-title">الأسئلة الشائعة</strong></p>
+<hr />
+<p>لمزيد من المساعدة والمعلومات والإجابات السريعة.</p>
+<p><a class="gc-link" href="#faqs-faqs">عرض الدليل</a></p>
+</li>
+</ul>
+</div></section>
+                        <h1 class='nav-section-title' id='section-الإنطلاقة'>
+                            الإنطلاقة <a class='headerlink' href='#section-الإنطلاقة' title='Permanent link'>↵</a>
+                        </h1>
+                        <section class="print-page" id="getting-started-login"><h1 id="getting-started-login-_1">تسجيل الدخول</h1>
+<hr />
+<p>تسجيل الدخول هو الخطوة الأولى للوصول إلى جلوبيتل كونكت. ستحدد صلاحياتك مثل موظف خدمة العملاء أو المشرف ميزات النظام والوظائف المتاحة لك.</p>
+<p>كيفية الوصول إلى صفحة تسجيل الدخول؟</p>
+<p>للوصول إلى نظام جوبيتل كونكت اتبع هذه الخطوات البسيطة:</p>
+<ol>
+<li>افتح متصفح الويب المفضل لديك. قد يكون جوجل كروم أو فايرفوكس أو مايكروسوفت إيدج أو أوبرا.</li>
+<li>في شريط العنوان، أدخل عنوان URL الخاص بالخادم بالصيغة التالية: <code>http://Server_Name:Port/gc-web</code>. يُرجى التأكد من استبدال "اسم_الخادم" و"المنفذ" بالتفاصيل المحددة التي زودك بها المسؤول لديك.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>متصفح الويب الموصى به لإستخدام نظام جلوبيتل كونيكت هو جوجل كروم (Google Chrome). يمكنك تنزيله من <a href="https://www.google.com/chrome/">هذا الرابط</a>. وهو يدعم جميع أنظمة التشغيل، بما في ذلك ويندوز وماك ولينكس.</p>
+</div>
+<p>كيفية تسجيل الدخول؟</p>
+<p><a class="glightbox" href="../assets/Getting-started/Login.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تسجيل الدخول" src="../assets/Getting-started/Login.jpg" title="تسجيل الدخول" /></a></p>
+<p>لتسجيل الدخول إلى حسابك على جلوبيتل كونكت، اتبع الخطوات التالية:</p>
+<ol>
+<li>اكتب اسم المستخدم الخاص بك في حقل <code>اسم المستخدم</code></li>
+<li>بعد ذلك، أدخل كلمة المرور الخاصة بك في حقل <code>كلمة المرور</code>.</li>
+<li>انقر على زر تسجيل الدخول أو اضغط على زر Enter من لوحة المخاتيح للمتابعة.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يرجى التأكد من استخدام بيانات الاعتماد الصحيحة المقدمة لك لتسجيل الدخول بنجاح، كما يمكنك تغيير كلمة المرور لحماية حسابك بعد أول تسجيل دخول. <a href="#my-profile-change-password">يمكنك الإطلاع على التفاصيل هنا</a>.</p>
+</div>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة التحكم</a></li>
+<li><a href="#getting-started-testing-your-camera-and-microphone">إختبار الكاميرا والمايك</a></li>
+<li><a href="#getting-started-getting-ready-for-engagements">جاهز لإستقبال مكالمات</a></li>
+<li><a href="#my-profile-change-password">تغيير كلمة المرور</a></li>
+</ul></section><section class="print-page" id="getting-started-share-screen"><h1 id="getting-started-share-screen-_1">مشاركة الشاشة (ضرورية)</h1>
+<hr />
+<p>هذه خطوة ضرورية بالنسبة لك لبدء استخدام النظام. ستحتاج إلى مشاركة شاشة متصفحك بالكامل مع النظام بحيث يسجل أنشطة شاشتك لغرض مراقبة الجودة.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>لن يسمح لك النظام بالمتابعة أو التعامل مع التفاعلات إذا لم تقم بتنفيذ هذه الخطوة.</p>
+</div>
+<p><a class="glightbox" href="../assets/Getting-started/Alert.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Share screen alert" src="../assets/Getting-started/Alert.jpg" title="Share screen alert" width="250" /></a></p>
+<p>كيف تشارك شاشة المتصفح بالكامل؟</p>
+<p>بعد <a href="#getting-started-login">تسجيل الدخول</a>، سيعرض النظام تلقائيًا نافذة منبثقة، حيث تحتاج إلى اتباع
+الخطوات التالية:</p>
+<ol>
+<li>انقر على علامة التبويب "الشاشة بأكملها - Entire Screen" في النافذة المنبثقة.</li>
+<li>قم بتحديد شاشة المتصفح بأكملها.</li>
+<li>أخيرًا، انقر على زر "مشاركة" لبدء مشاركة الشاشة.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Getting-started/Share-screen.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Share your entire browser screen" src="../assets/Getting-started/Share-screen.jpg" title="Share your entire browser screen" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>سيقوم النظام بتسجيل جميع أنشطة الشاشة أثناء المكالمة وسيتوقف عن التسجيل بمجرد انتهاء المكالمة.</p>
+</div>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-testing-your-camera-and-microphone">إختبار الكاميرا والمايك</a></li>
+<li><a href="#getting-started-getting-ready-for-engagements">جاهز لإستقبال مكالمات</a></li>
+</ul></section><section class="print-page" id="getting-started-my-dashboard"><h1 id="getting-started-my-dashboard-_1">مساحة العمل (لوحة القيادة)</h1>
+<hr />
+<p>هذه هي الشاشة الأولى والإفتراضية التي ستصل إليها بعد <a href="#getting-started-login">تسجيل الدخول</a> و<a href="#getting-started-share-screen">مشاركة شاشتك</a>. إنها صفحة مساحة العمل الخاصة بك بحيث توفر تفاصيل شاملة حول تفاعلات العملاء وأدائك الخاص والجاهزية لإستقبال تفاعلات جديدة من العملاء. هذا مفيد للغاية لإعطائك نظرة على ما يحدث حولك.</p>
+<p>تتكون هذه الشاشة من الأجزاء التالية:</p>
+<ol>
+<li>بطاقات الإحصائيات (قائمة الانتظار والمواعيد).</li>
+<li>الملف الشخصي ولوحة الحالة.</li>
+<li>سجل التفاعل وشبكة المواعيد.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Getting-started/Dashboard.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="لوحة القيادة" src="../assets/Getting-started/Dashboard.jpg" title="لوحة القيادة" /></a></p>
+<h2 id="getting-started-my-dashboard-_2">بطاقات الإحصائيات (حالة قائمة الإنتظار)</h2>
+<p>هذه بطاقات في الجزء العلوي من شاشة لوحة القيادة تعطيك فكرة عما يحدث مع العملاء في الوقت الحالي. هناك ثلاث بطاقات تعرض لك ما يلي:</p>
+<ul>
+<li>في قائمة الانتظار الآن (#): هذا هو عدد العملاء الذين ينتظرون حاليًا في الإنتظار للرد عليهم.</li>
+<li>أطول وقت انتظار (دقائق:ثواني): يعرض هذا وقت العميل الذي ينتظر أطول فترة انتظار.</li>
+<li>مواعيد اليوم (#): هذا هو العدد الإجمالي لجميع المواعيد مع العملاء لليوم الحالي.</li>
+</ul>
+<p><a class="glightbox" href="../assets/Getting-started/Stats.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="بطاقات الإحصائيات" src="../assets/Getting-started/Stats.jpg" title="بطاقات الإحصائيات" /></a></p>
+<h2 id="getting-started-my-dashboard-_3">لوحة الملف الشخصي والحالة</h2>
+<p>تعرض لوحة الملف الشخصي معلومات ملفك الشخصي، والتي تتضمن:</p>
+<ul>
+<li>صورة الملف الشخصي: صورتك المعروضة أثناء مكالمات العملاء.</li>
+<li>الاسم الكامل: اسمك الكامل المعروض أثناء مكالمات العملاء.</li>
+<li>البريد الإلكتروني: بريدك الإلكتروني المسجل في النظام.</li>
+<li>الفريق: الفريق الذي تنتمي إليه.</li>
+<li>رقم الهاتف: رقم هاتف عملك.</li>
+</ul>
+<p>تسمح لك لوحة الحالة بتحديث حالة التوفر الحالية الخاصة بك، وتهيئتك لبدء <a href="#getting-started-getting-ready-for-engagements">إستقبال تفاعلات جديدة</a> مع العملاء.</p>
+<p><a class="glightbox" href="../assets/Getting-started/Profile-card.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="لوحة الملف الشخصي الحالة" src="../assets/Getting-started/Profile-card.jpg" title="لوحة الملف الشخصي والحالة" /></a></p>
+<h2 id="getting-started-my-dashboard-_4">شبكة تاريخ المكالمات والمواعيد</h2>
+<p>تعرض لك هذه الشبكة تاريخ تفاعلاتك السابقة مع العملاء وجميع المواعيد التي تم حجزها من قبل العملاء للإطلاع عليها.</p>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>إذا كان لديك صلاحية المشرف سوف تتمكن من الإطلاع على جميع سجلات المكالمات (التفاعلات) والمواعيد لكل الفريق.</p>
+</div>
+<p>تغطي علامة التبويب الخاصة <a href="#getting-started-interaction-history">بسجل المكالمات (التفاعلات)</a> المعلومات التالية:</p>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>التاريخ والوقت</td>
+<td>هذا يعرض تاريخ ووقت بدء كل تفاعل.</td>
+</tr>
+<tr>
+<td>اسم العميل</td>
+<td>هذا يعرض الاسم الكامل للعميل.</td>
+</tr>
+<tr>
+<td>رضا العملاء</td>
+<td>هذا يعرض تقييم العميل للمكالمة وهو عبارة عن تقييم بين ١ (أقل تقييم) إلي ٥ (أعلى تقييم) وفي حالة عدم التقييم يظهر "--".</td>
+</tr>
+<tr>
+<td>المدة</td>
+<td>يشير هذا إلى مدة كل تفاعل. تشير الألوان إلى فترتي البداية والنهاية. على سبيل المثال، يشير اللون الأخضر إلى ٠ إلى دقيقتين، والأصفر يشير إلى دقيقتين إلى ٤ دقائق، والأحمر إلى ٤ إلى ٦ دقائق.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" href="../assets/Getting-started/Calls-tab.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="علامة تبويب سجل التفاعل" src="../assets/Getting-started/Calls-tab.jpg" title="علامة تبويب سجل التفاعل" /></a></p>
+<p>تغطي علامة التبويب الخاصة <a href="#getting-started-appointments">بسجل المواعيد (الحجوزات)</a> المعلومات التالية:</p>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>وقت الموعد</td>
+<td>هذا يعرض تاريخ ووقت الموعد الذي تم حجزه من قبل العميل.</td>
+</tr>
+<tr>
+<td>حالة إكمال المكالمة</td>
+<td>هذا يعرض حالة المكالمة إذا كانت قادمة أو تم إكمالها أو أعيدت جدولتها أو تم إلغائها.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" href="../assets/Getting-started/My-appointments.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="علامة تبويب الحجوزات" src="../assets/Getting-started/My-appointments.jpg" title="علامة تبويب الحجوزات" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-getting-ready-for-engagements">جاهز لإستقبال مكالمات</a></li>
+<li><a href="#getting-started-interaction-history">سجل الفاعلات</a></li>
+<li><a href="#getting-started-appointments">الحجوزات</a></li>
+</ul></section><section class="print-page" id="getting-started-testing-your-camera-and-microphone"><h1 id="getting-started-testing-your-camera-and-microphone-_1">إختبار الكاميرا والميكرفون الخاص بي</h1>
+<hr />
+<p>تسمح لك هذه الميزة باختبار الكاميرا والميكروفون المتصلين بالحاسوب والتأكد من أنهم يعملان بالشكل الصحيح قبل التفاعل مع العملاء.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>يرجى التأكد من أن جهاز الحاسوب الخاص بك يحتوي على كاميرا وميكروفون مضافين أو مدمجين حتى تتمكن من استخدام النظام. بدونهما، لن تتمكن من تلقي التفاعلات.</p>
+</div>
+<h2 id="getting-started-testing-your-camera-and-microphone-_2">اختبار الميكروفون الخاص بي</h2>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يختار النظام الميكروفون المدمج بشكل افتراضي. يمكنك النقر على زر "اختبار" لبدء اختبار هذا الميكروفون.</p>
+</div>
+<p>لاختبار الميكروفون الخارجي، اتبع الخطوات التالية:</p>
+<ol>
+<li>قم بتوصيل الميكروفون بجهاز الحاسوب الخاص بك.</li>
+<li>انقر على القائمة المنسدلة بجوار أيقونة الميكروفون في لوحة الملف الشخصي.</li>
+<li>حدد الميكروفون المخصص الذي تريد اختباره.</li>
+<li>انقر على زر "اختبار" وابدأ التحدث لعرض تردد صوتك.</li>
+<li>أخيرًا، انقر على زر "إيقاف الإختبار" لإنهاء الاختبار.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Getting-started/Test-microphone.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="إختبار الميكرفون" src="../assets/Getting-started/Test-microphone.jpg" title="إختبار الميكروفون" /></a></p>
+<h2 id="getting-started-testing-your-camera-and-microphone-_3">إختبار الكاميرا الخاصة بي</h2>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يختار النظام الكاميرا المدمجة بشكل افتراضي. يمكنك النقر على زر "اختبار" لبدء اختبار هذه الكاميرا.</p>
+</div>
+<p>لاختبار الكاميرا الخارجية، اتبع الخطوات التالية:</p>
+<ol>
+<li>قم بتوصيل الكاميرا بالحاسوب.</li>
+<li>انقر على القائمة المنسدلة بجوار أيقونة الكاميرا في لوحة الملف الشخصي.</li>
+<li>حدد الكاميرا المخصصة التي تريد اختبارها.</li>
+<li>انقر على زر "اختبار" لبدء عرض وجهك في صورة الملف الشخصي.</li>
+<li>أخيرًا، انقر على زر "إيقاف الإختبار" لإنهاء الاختبار.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Getting-started/Test-camera.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="إختبار الكاميرا" src="../assets/Getting-started/Test-camera.jpg" title="إختبار الكاميرا" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-getting-ready-for-engagements">جاهز لإستقبال مكالمات</a></li>
+</ul></section><section class="print-page" id="getting-started-interaction-history"><h1 id="getting-started-interaction-history-_1">سجل المكالمات (مكالماتي)</h1>
+<hr />
+<p>تُوفر ميزة سجل التفاعل نظرة شاملة على مكالماتك السابقة مع العملاء ومعرفة رضا العملاء لك.</p>
+<p>كيف يمكنني الوصول إلى سجل التفاعل؟</p>
+<p>في صفحة "لوحة القيادة"، يمكنك عرض تفاصيل مكالماتك من خلال علامة التويب الخاصة ب "مكالماتي". بحيث تتوفر المعلومات التالية:</p>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>التاريخ والوقت</td>
+<td>يعرض هذا تاريخ ووقت بدء كل تفاعل.</td>
+</tr>
+<tr>
+<td>اسم العميل</td>
+<td>هذا يعرض الاسم الكامل للعميل.</td>
+</tr>
+<tr>
+<td>رضا العملاء</td>
+<td>هذا يعرض تقييم العميل للمكالمة عبارة عن تقييم من ١ (أقل تقييم) إلي ٥ (أعلى تقييم).</td>
+</tr>
+<tr>
+<td>المدة</td>
+<td>يمثل هذا مدة كل تفاعل. تشير الألوان المختلفة إلى مدد مختلفة: الأخضر لمدة ٠-٢ دقائق، والأصفر لمدة ٢-٤ دقائق، والأحمر لمدة ٤-٦ دقائق.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يمكنك تصفية تفاعلاتك السابقة حسب "هذا الشهر" أو "اليوم" أو "هذا الأسبوع" أو "الشهر الماضي".</p>
+</div>
+<p>يمكنك أيضًا عرض إحصائيات المكالمات والرسوم البيانية على النحو التالي:</p>
+<ul>
+<li>
+<p>رضا العميل الخاص بي (%): يعرض النسبة المئوية لنتيجة رضا العملاء من أصل ١٠٠٪ بناءً على نتائج الاستبيان لك ولفريقك.</p>
+</li>
+<li>
+<p>توافري (%): يعرض بيانات عن مدى التوافر  لك ولفريقك. عن طريق حساب النسبة بين إجمالي وقت الاستعداد ووقت العمل لفترات محددة (اليوم، وهذا الأسبوع، وهذا الشهر، والشهر الماضي). يشمل وقت الجاهزية وقت العمل تحت الطلب والوقت المتاح، بينما يشمل وقت العمل أوقات العمل وقت الاستدعاء ووقت التوافر ووقت الاتصال بالإنترنت ووقت عدم الإزعاج وأوقات الراحة.</p>
+</li>
+<li>
+<p>متوسط وقت التعامل الخاص بي  (ساعة:دقيقة:ثواني): يعرض متوسط وقت المعالجة لجميع السجلات (المكالمات)، مقيسًا بالساعات والدقائق والثواني، لك ولفريقك.</p>
+</li>
+<li>
+<p>وقت تسجيل الدخول (ساعة:دقيقة:ثواني): يعرض إجمالي وقت تسجيل الدخول من لحظة تسجيل الدخول إلى الوقت الحالي لك ولفريقك، مقيسًا بالساعات والدقائق والثواني.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../assets/Getting-started/My-calls.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="سجل التفاعلات" src="../assets/Getting-started/My-calls.jpg" title="سجل التفاعلات" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة</a></li>
+<li><a href="#getting-started-getting-ready-for-engagements">جاهز لإستقبال مكالمات</a></li>
+</ul></section><section class="print-page" id="getting-started-appointments"><h1 id="getting-started-appointments-_1">سجل المواعيد (مواعيدي)</h1>
+<hr />
+<p>تُوفر ميزة سجل المواعيد (الحجوزات) نظرة شاملة على المواعيد القادمة والمجدولة مع العملاء.</p>
+<p>كيف يمكنني الوصول إلى قائمة المواعيد؟</p>
+<p>في صفحة "لوحة القيادة"، يمكنك عرض تفاصيل المواعيد من خلال علامة التبويب الخاصة ب "مواعيدي". بحيث تتوفر المعلومات التالية:</p>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>وقت الموعد</td>
+<td>هذا يعرض تاريخ ووقت الموعد الذي تم حجزه من قبل العميل.</td>
+</tr>
+<tr>
+<td>حالة إكمال المكالمة</td>
+<td>هذا يعرض حالة المكالمة إذا كانت قادمة أو تم إكمالها أو أعيدت جدولتها أو تم إلغائها.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" href="../assets/Getting-started/My-appointments.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="مواعيدي" src="../assets/Getting-started/My-appointments.jpg" title="مواعيدي" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة</a></li>
+<li><a href="#getting-started-testing-your-camera-and-microphone">إختبار الكاميرا والميكرفون</a></li>
+</ul></section><section class="print-page" id="getting-started-getting-ready-for-engagements"><h1 id="getting-started-getting-ready-for-engagements-_1">جاهز لإستقبال مكالمات</h1>
+<hr />
+<p>الآن بعد أن قمت بتسجيل الدخول، يمكنك البدء في التفاعل مع العملاء. هنا تحتاج إلى إخبار العملاء بأنك جاهز، وإلا فلن تتلقى أي تفاعل لأن النظام سيفترض أنك مشغول.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>إذا كنت مشرفًا يتعامل مع <a href="#handling-interactions-call-transfer">التفاعلات المحولة</a> من أعضاء فريقك فقط فيجب أن تكون مستعدًا وإلا سيفترض النظام أنك مشغول ولن تتلقى أي تفاعلات محولة من الفريق.</p>
+</div>
+<p>كيف تستعد للتفاعلات؟</p>
+<p>لكي تكون جاهزاً للتفاعلات، اضغط على زر "جاهز" الموجود أسفل قسم الحالة الموجود في قسم الملف الشخصي في لوحة القيادة (الصفحة الرئيسية).</p>
+<p><a class="glightbox" href="../assets/Getting-started/Getting-ready.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="الاستعداد للمشاركات" src="../assets/Getting-started/Getting-ready.jpg" title="الاستعداد للمشاركات" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة</a></li>
+<li><a href="#getting-started-testing-your-camera-and-microphone">إختبار الكاميرا والمايك</a></li>
+</ul></section><h1 class='nav-section-title-end'>Ended: الإنطلاقة</h1>
+                        <h1 class='nav-section-title' id='section-التفاعل-مع-العملاء'>
+                            التفاعل مع العملاء <a class='headerlink' href='#section-التفاعل-مع-العملاء' title='Permanent link'>↵</a>
+                        </h1>
+                        <section class="print-page" id="handling-interactions-receiving-a-new-interaction"><h1 id="handling-interactions-receiving-a-new-interaction-_1">إستقبال مكالمة جديدة</h1>
+<hr />
+<p>إذا كنت <a href="#getting-started-getting-ready-for-engagements">جاهزًا</a>، سيبدأ النظام في إرسال تفاعلات العملاء إليك للتعامل معها.</p>
+<p>عندما يتم تخصيص تفاعل جديد لك، ستظهر نافذة تنبيه على شاشتك مصحوبة بنغمة رنين.</p>
+<p>توفر نافذة الإشعارات هذه التفاصيل التالية:</p>
+<ul>
+<li>ما إذا كانت المكالمة لموعد جديد أو تفاعل دعم فوري.</li>
+<li>خيارات لتمكين الكاميرا أو تعطيلها.</li>
+<li>معلومات العميل، بما في ذلك اسم العميل وبريده الإلكتروني ورقم هاتفه.</li>
+<li>خيارات للرد على هذا التفاعل أو رفضه.</li>
+</ul>
+<h2 id="handling-interactions-receiving-a-new-interaction-_2">الرد على المكالمة</h2>
+<p>اضغط على أيقونة "رد <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"/></svg></span>" الخضراء لقبول المكالمة وبدء التفاعل مع العميل.</p>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Answer-call.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="قبول المكالمة" src="../assets/Handling-Interactions/Answer-call.jpg" title="قبول المكالمة" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>تأكد من تفعيل صوت الميكروفون وتشغيل الكاميرا (إذا تطلب الأمر) عند الرد على المكالمة.</p>
+</div>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Camera.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="لا تقم بتعطيل الكاميرا" src="../assets/Handling-Interactions/Camera.jpg" /></a></p>
+<h2 id="handling-interactions-receiving-a-new-interaction-_3">رفض المكالمة</h2>
+<p>لرفض المكالمة، اضغط على أيقونة "رفض <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 15.5c-1.2 0-2.5-.2-3.6-.6h-.3c-.3 0-.5.1-.7.3l-2.2 2.2c-2.8-1.5-5.2-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.4-.5-3.6 0-.5-.5-1-1-1H4c-.5 0-1 .5-1 1 0 9.4 7.6 17 17 17 .5 0 1-.5 1-1v-3.5c0-.5-.5-1-1-1M5 5h1.5c.1.9.3 1.8.5 2.6L5.8 8.8C5.4 7.6 5.1 6.3 5 5m14 14c-1.3-.1-2.6-.4-3.8-.8l1.2-1.2c.8.2 1.7.4 2.6.4V19m.1-15.5L17 5.6l-2.1-2.1-1.4 1.4L15.6 7l-2.1 2.1 1.4 1.4L17 8.4l2.1 2.1 1.4-1.4L18.4 7l2.1-2.1-1.4-1.4Z"/></svg></span>" الحمراء.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>إذا لم ترد على تفاعل وارد في غضون ٥ ثوانٍ، فسيقوم النظام بتعيين هذا التفاعل إلى عضو آخر جاهز في الفريق وتعيين حالتك إلى "غير جاهز".
+إذا ضغطت على "رفض"، فسيتم إعادة التفاعل إلى قائمة الانتظار، وسيتم تسجيل رفضك للمكالمة في النظام. يجب استخدام هذا الخيار في حالات الطوارئ فقط.</p>
+</div>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Reject-call.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="رفض المكالمة" src="../assets/Handling-Interactions/Reject-call.jpg" title="رفض المكالمة" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-testing-your-camera-and-microphone">إختبار الكاميرا الميكروفون</a></li>
+<li><a href="#handling-interactions-call-transfer">تحويل المكالمة</a></li>
+<li><a href="#handling-interactions-change-background-and-blur">تغيير الخلفية</a></li>
+<li><a href="#handling-interactions-chat">المحادثات/ الدردشة</a></li>
+<li><a href="#handling-interactions-exchanging-documents">تبادل الملفات</a></li>
+</ul></section><section class="print-page" id="handling-interactions-conference-room-functions"><h1 id="handling-interactions-conference-room-functions-_1">وظائف غرفة الإجتماع</h1>
+<hr />
+<p>بمجرد أن <a href="#handling-interactions-receiving-a-new-interaction">تجيب على المكالمة</a>، ستظهر غرفة الإجتماع، مما يتيح التفاعل مع العميل كما ستتمكن من الإطلاع على صورة العميل وسماع صوته.</p>
+<p>تنقسم صفحة غرفة الإجتماع إلى ثلاثة أقسام رئيسية:</p>
+<ol>
+<li>لوحة الاجتماع: يعرض هذا القسم صورتك وصورة العميل المباشرة وحالة الميكروفون الخاصة بالعميل وحالة الميكروفون الخاصة بك.</li>
+<li>لوحة معلومات العميل: يعرض هذا القسم جميع معلومات العميل الذي قام بإضافتها قبل حجز الإجتماع.</li>
+<li>وظائف الإجتماع: يوفر هذا القسم الإجراءات الضرورية التي يمكنك القيام بها أثناء الاجتماع.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Metting-room.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="لوحة الإجتماع" src="../assets/Handling-Interactions/Metting-room.jpg" title="لوحة الإجتماع" /></a></p>
+<h2 id="handling-interactions-conference-room-functions-_2">وظائف الإجتماع</h2>
+<p>فيما يلي ثماني وظائف يمكنك الاستفادة منها أثناء التفاعل مع العميل في الإجتماع:</p>
+<ol>
+<li>تشغيل/إيقاف تشغيل الكاميرا.</li>
+<li>كتم/إلغاء كتم صوت الميكروفون.</li>
+<li><a href="#handling-interactions-screen-sharing">مشاركة شاشتك</a> مع العميل.</li>
+<li><a href="#handling-interactions-call-transfer">تحويل المكالمة</a> إلى موظف خدمة عملاء آخر جاهز.</li>
+<li>بدأ مكالمة جماعية مع المشرف.</li>
+<li><a href="#handling-interactions-change-background-and-blur">تغيير الخلفية</a> أثناء مشاركة الكاميرا.</li>
+<li><a href="#handling-interactions-chat">المحادثة</a> مع العميل عن طريق الرسائل النصية.</li>
+<li><a href="#handling-interactions-exchanging-documents">تبادل المستندات والملفات</a> مع العميل.</li>
+</ol>
+<h3 id="handling-interactions-conference-room-functions-_3">تشغيل/إيقاف تشغيل الكاميرا</h3>
+<p>لتشغيل الكاميرا أو إيقافها أثناء تفاعل العملاء، انقر على أيقونة "الكاميرا" لإيقافها إذا كانت تعمل أو الضغط عليها لتفعيلها إذا كانت لا تعمل. يمكنك العثور على هذا في قسم وظائف الإجتماع الموجود في أسفل صفحة غرفة الإجتماع.</p>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Disable-camera.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تشغيل/إيقاف تشغيل الكاميرا" src="../assets/Handling-Interactions/Disable-camera.jpg" title="تشغيل/إيقاف تشغيل الكاميرا" /></a></p>
+<h3 id="handling-interactions-conference-room-functions-_4">كتم/إلغاء كتم صوت الميكروفون الخاص بك</h3>
+<p>لتبديل كتم صوت ميكروفونك أو إلغاء كتمه أثناء التفاعل مع العميل، انقر على أيقونة "ميكروفون". يمكنك العثور على هذا في قسم وظائف الإجتماع، الموجود في أسفل صفحة غرفة الإجتماع.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>لا تكتم صوت الميكروفون أثناء التفاعل مع العميل. يمكنك كتم الصوت فقط إذا كان عملك لا يتطلب التحدث مع العميل.</p>
+</div>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Mute-microphone.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="كتم/ إلغاء كتم صوت الميكروفون" src="../assets/Handling-Interactions/Mute-microphone.jpg" title="كتم/ إلغاء كتم صوت الميكروفون" /></a></p>
+<h3 id="handling-interactions-conference-room-functions-_5">بدء مكالمة جماعية مع المشرف</h3>
+<p>يمكنك إنشاء مكالمة جماعية مع مشرف جاهز بالنقر على إجراء "المشاركة بالحوار". سيظهر المشرف الجاهز، أو يمكنك البحث عنه بالاسم لإضافته إلى الاجتماع.</p>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Conference-Call.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="بدء مكالمة جماعية مع المشرف" src="../assets/Handling-Interactions/Conference-Call.jpg" title="بدء مكالمة جماعية مع المشرف" /></a></p></section><section class="print-page" id="handling-interactions-call-transfer"><h1 id="handling-interactions-call-transfer-_1">تحويل المكالمة</h1>
+<hr />
+<p>تمكّنك هذه الوظيفة من تحويل تفاعلك النشط مع العميل إلى موظف خدمة عملاء آخر جاهز ومتاح للتعامل معه.</p>
+<p>كيف يمكنني تحويل المكالمة إلى موظف خدمة عملاء آخر جاهز؟</p>
+<p>لتحويل المكالمة، اتبع الخطوات التالية:</p>
+<ol>
+<li>انقر على زر "تحويل" الموجود في قسم وظائف الاجتماع.</li>
+<li>ستظهر نافذة منبثقة تعرض موظفين خدمة العملاء المتاحين بشكل افتراضي.</li>
+<li>يمكنك البحث عن موظف خدمة عملاء معين عن طريق كتابة اسمه في مربع البحث.</li>
+<li>أخيرًا، حدد موظف خدمة العملاء وانقر على زر "تحويل".</li>
+</ol>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Call-transfer.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تحويل المكالمة" src="../assets/Handling-Interactions/Call-transfer.jpg" title="تحويل المكالمة" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#handling-interactions-chat">المحادثة مع العميل</a></li>
+<li><a href="#handling-interactions-exchanging-documents">تبادل الملفات</a></li>
+</ul></section><section class="print-page" id="handling-interactions-change-background-and-blur"><h1 id="handling-interactions-change-background-and-blur-_1">تغيير خلفية الكاميرا</h1>
+<hr />
+<p>أثناء استخدام الكاميرا، يمكنك الاستفادة من هذه الميزة لتغيير الخلفية أو إجراء تأثير عليها أثناء تفاعلات مع العملاء.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>استخدم هذه الوظيفة فقط عند استخدام الكاميرا مع أحد العملاء.</p>
+</div>
+<h2 id="handling-interactions-change-background-and-blur-_2">كيفية تغيير صورة الخلفية؟</h2>
+<p>اتبع هذه الخطوات لتغيير صورة الخلفية:</p>
+<ol>
+<li>انقر على زر "تأثير الخلفية" الموجود في قسم الوظائف في غرفة الإجتماع.</li>
+<li>ستظهر لوحة "تأثير الخلفية".</li>
+<li>حدد صورة الخلفية المفضلة لديك من قسم "خلفية الصورة".</li>
+<li>أخيرًا، يمكنك رؤية هذا التأثير في قسم "الاجتماع" وسيرى العميل هذه الخلفية أثناء التفاعل معك.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Change-background.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تغيير صورة الخلفية" src="../assets/Handling-Interactions/Change-background.jpg" title="تغيير صورة الخلفية" /></a></p>
+<h2 id="handling-interactions-change-background-and-blur-_3">كيفية تطبيق تأثير التمويه على الخلفية؟</h2>
+<p>اتبع هذه الخطوات لتطبيق تأثير ضبابي على الخلفية:</p>
+<ol>
+<li>انقر على زر "تأثير الخلفية" الموجود في قسم الوظائف في غرفة الاجتماعات.</li>
+<li>ستظهر لوحة "تأثير الخلفية".</li>
+<li>حدد "ضبابية - غير واضح" من قسم "خلفية غير واضحة".</li>
+<li>أخيرًا، يمكنك رؤية هذا التأثير في قسم "الاجتماع" وسيرى العميل هذه الخلفية أثناء التفاعل معك.</li>
+</ol>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Blurred-effect.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تطبيق تأثير ضبابي" src="../assets/Handling-Interactions/Blurred-effect.jpg" title="تطبيق تأثير ضبابي" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يمكنك إزالة صورة الخلفية أو التأثير الضبابي عن طريق تحديد "بدون تأثير" من لوحة "خلفية غير واضحة".</p>
+</div>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#handling-interactions-conference-room-functions">وظائف الإجتماع</a></li>
+<li><a href="#handling-interactions-chat">المحادثة مع العميل</a></li>
+<li><a href="#handling-interactions-exchanging-documents">تبادل الملفات</a></li>
+</ul></section><section class="print-page" id="handling-interactions-screen-sharing"><h1 id="handling-interactions-screen-sharing-_1">مشاركة الشاشة أثناء المكالمة</h1>
+<hr />
+<p>أثناء تفاعلات العملاء، يمكنك مشاركة شاشتك مع العميل لتقديم المعلومات الضرورية أو شرح كيفية استخدام الخدمات التي تتطلب مشاركة الشاشة.</p>
+<p>كيف يمكنني مشاركة شاشتي مع العميل؟</p>
+<p>الأمر بسيط، ما عليك سوى اتباع الخطوات التالية:</p>
+<ol>
+<li>انقر على زر "مشاركة الشاشة" الموجود في قسم وظائف الاجتماع.</li>
+<li>في النافذة المنبثقة، اختر علامة التبويب المطلوبة، مثل علامة تبويب كروم أو النافذة أو الشاشة بأكملها.</li>
+<li>ثم، حدد الشاشة التي تريد مشاركتها.</li>
+<li>أخيرًا، ابدأ مشاركة الشاشة بالنقر على زر "مشاركة".</li>
+</ol>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Share-screen.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="مشاركة الشاشة" src="../assets/Handling-Interactions/Share-screen.jpg" title="مشاركة الشاشة" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>لإيقاف مشاركة الشاشة، ما عليك سوى النقر على زر "إيقاف مشاركة الشاشة" الموجود في قسم وظائف الاجتماع.</p>
+</div>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#handling-interactions-conference-room-functions">وظائف الإجتماع</a></li>
+<li><a href="#handling-interactions-exchanging-documents">تبادل الملفات</a></li>
+</ul></section><section class="print-page" id="handling-interactions-chat"><h1 id="handling-interactions-chat-_1">المحادثة</h1>
+<hr />
+<p>تتيح لك ميزة المحادثة تبادل الرسائل النصية مع العملاء أثناء التفاعل. هذه الميزة مفيدة بشكل خاص عندما تحتاج إلى مشاركة تفاصيل مثل الأرقام أو العناوين التي تتطلب الحفظ. كما أنها مفيدة أيضاً عندما يكون الاتصال بالإنترنت ضعيفاً وتحتاج إلى إرسال معلومات مهمة.</p>
+<p>كيف يمكنني المحادثة مع العميل؟</p>
+<p>يمكنك المحادثة مع العميل باتباع الخطوات التالية:</p>
+<ol>
+<li>انقر على أيقونة "المحادثة" الموجودة في قسم وظائف الإجتماع.</li>
+<li>سيظهر قسم المحادثة، حيث يمكنك عرض رسائل العميل.</li>
+<li>لإرسال رسالة، اكتبها في مربع الرسالة واضغط على زر "Enter".</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>إذا كانت لديك معلومات مهمة تتعلق بتفاعل ما، قم بنسخها قبل انتهاء المكالمة وإلا ستفقد البيانات من المحادثة عند انتهاء المكالمة.</p>
+</div>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Chat.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="المحادثة" src="../assets/Handling-Interactions/Chat.jpg" title="المحادثة" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#handling-interactions-conference-room-functions">وظائف الإجتماع</a></li>
+</ul></section><section class="print-page" id="handling-interactions-exchanging-documents"><h1 id="handling-interactions-exchanging-documents-_1">تبادل المستندات والملفات</h1>
+<hr />
+<p>تتيح لك ميزة مشاركة المستندات والملفات مع العملاء أثناء التفاعل. هذه الميزة مفيدة بشكل خاص عندما تحتاج إلى مشاركة مستندات مثل الفواتير.</p>
+<p>كيف يمكنني مشاركة المستندات مع العميل؟</p>
+<p>يمكنك مشاركة المستندات مع العميل عن طريق الخطوات التالية:</p>
+<ol>
+<li>انقر على أيقونة "المحادثة" الموجودة في قسم وظائف الإجتماع.</li>
+<li>سيظهر بعد ذلك قسم الدردشة، حيث يمكنك عرض الرسائل الواردة من العميل.</li>
+<li>انقر على أيقونة "ملف".</li>
+<li>سيتم فتح مدير الملفات لتتمكن من تحديد الملف.</li>
+<li>حدد الملف المحدد الذي تريد مشاركته واضغط على زر "Enter" لإرساله إلى العميل.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>إذا كانت لديك ملفات مهمة متعلقة بتفاعل ما، قم بتنزيلها قبل انتهاء المكالمة وإلا ستفقد الملفات من الدردشة عند انتهاء المكالمة.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>تشمل أنواع الملفات المدعومة الصور ومقاطع الفيديو والمستندات (PDF، Docx، XLSX) والملفات المضغوطة.</p>
+</div>
+<p><a class="glightbox" href="../assets/Handling-Interactions/Upload-documents.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تبادل الملفات" src="../assets/Handling-Interactions/Upload-documents.jpg" title="مشاركة الملفات" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#handling-interactions-conference-room-functions">وظائف الإجتماع</a></li>
+<li><a href="#handling-interactions-screen-sharing">مشاركة الشاشة</a></li>
+</ul></section><h1 class='nav-section-title-end'>Ended: التفاعل مع العملاء</h1>
+                        <h1 class='nav-section-title' id='section-تفاعلات-العملاء'>
+                            تفاعلات العملاء <a class='headerlink' href='#section-تفاعلات-العملاء' title='Permanent link'>↵</a>
+                        </h1>
+                        <section class="print-page" id="customer-access-requesting-a-meeting"><h1 id="customer-access-requesting-a-meeting-_1">حجز/ إجراء مكالمة</h1>
+<hr />
+<p>كعميل، لديك القدرة على حجز موعد جديد أو دعم فوري، مما سيؤدي إلى بدء التفاعل مع أحد موظفين خدمة العملاء.</p>
+<p>كيف تطلب/ تحجز موعداً جديداً؟</p>
+<ol>
+<li>انتقل إلى عنوان URL الذي يوفره دعم العملاء أو ابحث عنه في صفحة دعم العملاء.</li>
+<li>أدخل المعلومات الشخصية اللازمة: الهوية الوطنية ورقم الحساب ونوع الحساب والاسم والعمر والهاتف المحمول والبريد الإلكتروني وحدد المدينة.</li>
+<li>اختر نوع الاجتماع الذي تريده. هناك خياران: "موعد"، والذي يمكّنك من تحديد تاريخ ووقت مخصصين عن طريق إختيار "الحصول على الأوقات المتاحة"، أو "الدعم الفوري"، وهو لطلب اجتماع الآن.</li>
+<li>انقر على "حجز موعد" لبدء عملية طلب الاجتماع.</li>
+<li>ستظهر نافذة منبثقة تحتوي على رابط اجتماعك.</li>
+<li>إذا كنت قد اخترت الدعم الفوري، يمكنك نسخ الرابط ولصقه في علامة تبويب متصفح جديدة لـ <a href="#customer-access-starting-a-meeting">بدء اجتماع</a> مع أحد موظفين خدمة العملاء.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>إذا قمت بحجز اجتماع، سيتم إرسال رسالة بريد إلكتروني تحتوي على رابط الاجتماع والتفاصيل الخاصة بك.</p>
+</div>
+<p><a class="glightbox" href="../assets/Customer-Access/Requesting-meeting.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="طلب موعد" src="../assets/Customer-Access/Requesting-meeting.jpg" title="طلب موعد" /></a></p></section><section class="print-page" id="customer-access-starting-a-meeting"><h1 id="customer-access-starting-a-meeting-_1">بدء الإجتماع</h1>
+<hr />
+<p>بعد <a href="#customer-access-requesting-a-meeting">طلب اجتماع</a>، انقر على "أبدء الجلسة" لبدء التفاعل مع أحد موظفي خدمة العملاء.</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>تأكد من تفعيل الميكروفون الافتراضي وتشغيل الكاميرا إذا تطلب الأمر قبل بدء التفاعل مع موظف خدمة العملاء.</p>
+</div>
+<p>سيتم عرض غرفة الإجتماع، وتضم قسمين:</p>
+<ol>
+<li>لوحة الاجتماع: يُظهر هذا القسم حالة البث المباشر وحالة الميكروفون لكل من موظف خدمة العملاء ولك.</li>
+<li>وظائف الاجتماع: يحتوي هذا القسم على العديد من الإجراءات التي يمكنك القيام بها أثناء الاجتماع.</li>
+</ol>
+<h2 id="customer-access-starting-a-meeting-_2">وظائف الاجتماع</h2>
+<p>فيما يلي سبع وظائف يمكنك استخدامها أثناء تفاعلك مع موظف خدمة العملاء في غرفة الإجتماع:</p>
+<ol>
+<li>تشغيل/إيقاف الكاميرا.</li>
+<li>كتم/إلغاء كتم صوت الميكروفون الخاص بك.</li>
+<li><a href="#handling-interactions-screen-sharing">مشاركة شاشتك</a> مع موظف خدمة العملاء.</li>
+<li><a href="#handling-interactions-change-background-and-blur">تغيير الخلفية</a> أثناء تشغيل الكاميرا.</li>
+<li><a href="#handling-interactions-chat">الدردشة</a> مع موظف خدمة العملاء.</li>
+<li><a href="#handling-interactions-exchanging-documents">تبادل المستندات</a> مع موظف خدمة العملاء.</li>
+<li>أغلق الخط لإنهاء الاجتماع وسيتم ظهور صفحة لتقييم تجربتك.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>بعد إنهاء المكالمة، يمكنك تقييم تجربتك مع موظف خدمة العملاء على مقياس من ١ إلى ٥ نجوم، بحيث تكون ٥ هي الأعلى و١ هي الأقل.</p>
+</div>
+<p><a class="glightbox" href="../assets/Customer-Access/Starting-meeting.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="بدء الإجتماع" src="../assets/Customer-Access/Starting-meeting.jpg" title="بدء الإجتماع" /></a></p></section><h1 class='nav-section-title-end'>Ended: تفاعلات العملاء</h1>
+                        <h1 class='nav-section-title' id='section-ملفي-الشخصي'>
+                            ملفي الشخصي <a class='headerlink' href='#section-ملفي-الشخصي' title='Permanent link'>↵</a>
+                        </h1>
+                        <section class="print-page" id="my-profile-modify-profile-photo"><h1 id="my-profile-modify-profile-photo-_1">تغيير صورة الملف الشخصي</h1>
+<hr />
+<p>يمكنك إضافة صورة شخصية وذلك من خلال قسم الملف الشخصي الموجود داخل مساحة العمل الخاصة بك عن طريق الضغط علي أيقونة الكاميرا الموجودة بجانب الصورة الإفتراضية ليتم تشغيل الكاميرا والتقاط صورة شخصية بحيث تظهر للعملاء عند التفاعل معهم.</p>
+<p><a class="glightbox" href="../assets/My-profile/Change-Profile-Picture.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تغيير صورة الملف الشخصي" src="../assets/My-profile/Change-Profile-Picture.jpg" title="تغيير الصورة الشخصية" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة (مساحة العمل الخاصة بي)</a></li>
+<li><a href="#getting-started-testing-your-camera-and-microphone">إختبار الكاميرا والميكرفون</a></li>
+<li><a href="#getting-started-getting-ready-for-engagements">جاهز لإستقبال مكالمات</a></li>
+</ul></section><section class="print-page" id="my-profile-change-password"><h1 id="my-profile-change-password-_1">تغيير كلمة المرور</h1>
+<hr />
+<p>يمكنك تغيير كلمة مرورك الحالية لتأمين حسابك أو إذا كنت تقوم بتسجيل الدخول إلى النظام للمرة الأولى وتحتاج إلى تغيير كلمة المرور المتوفرة.</p>
+<p>كيف يمكنني تغيير كلمة المرور الحالية؟</p>
+<p>لتغيير كلمة المرور الخاصة بك، اتبع الخطوات التالية:</p>
+<ol>
+<li>انقر على القائمة المنسدلة بالقرب من صورة ملفك الشخصي في رأس الصفحة.</li>
+<li>اختر "تغيير كلمة المرور" من القائمة المنسدلة.</li>
+<li>ستظهر نافذة منبثقة لتغيير كلمة المرور الخاصة بك.</li>
+<li>أدخل كلمة المرور الحالية في حقل "كلمة المرور الحالية".</li>
+<li>أخيرًا، أدخل كلمة المرور الجديدة وقم بتأكيدها وانقر على "حفظ".</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>تأكد من إنشاء كلمة مرور قوية تحتوي على ثمانية أحرف على الأقل. يجب أن تتضمن على الأقل رقمًا واحدًا، وحرفًا خاصًا واحدًا، وحرفًا كبيرًا واحدًا، وحرفًا صغيرًا واحدًا.</p>
+</div>
+<p><a class="glightbox" href="../assets/My-profile/Change-password.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تغيير كلمة المرور" src="../assets/My-profile/Change-password.jpg" title="تغيير كلمة المرور" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة (مساحة العمل الخاصة بي)</a></li>
+</ul></section><h1 class='nav-section-title-end'>Ended: ملفي الشخصي</h1>
+                        <h1 class='nav-section-title' id='section-مراقبة-الفريق-للمشرفين-'>
+                            مراقبة الفريق (للمشرفين) <a class='headerlink' href='#section-مراقبة-الفريق-للمشرفين-' title='Permanent link'>↵</a>
+                        </h1>
+                        <section class="print-page" id="real-time-monitor-track-agents-performance"><h1 id="real-time-monitor-track-agents-performance-_1">تتبع أداء موظفي خدمة العملاء</h1>
+<hr />
+<p>بصفتك مشرفاً، يمكنك الإشراف على أداء فريقك والوصول إلى تحليل إحصائي مفصل لحالات موظفي خدمة العملاء.</p>
+<p>كيف يمكنني الوصول إلى صفحة مراقبة الفريق؟</p>
+<p>للوصول إلى صفحة مراقبة الفريق، اتبع الخطوات التالية:</p>
+<ol>
+<li>انقر على أيقونة الخيارات على الجانب الأيمن من رأس الصفحة.</li>
+<li>من القائمة المنسدلة، اختر "مراقبة الفريق".</li>
+<li>ستظهر لك صفحة مراقبة الفريق.</li>
+</ol>
+<p>هناك أربع بطاقات في صفحة مراقبة الفريق، موضحة على النحو التالي:</p>
+<h2 id="real-time-monitor-track-agents-performance-_2">حالة قائمة الإنتظار</h2>
+<p>تزود بطاقة "في قائمة الانتظار الآن" المشرفين بإحصائيات في الوقت الفعلي عن العملاء لليوم الحالي:</p>
+<ul>
+<li>في قائمة الانتظار الآن (#): تعرض العدد الإجمالي للعملاء الموجودين حاليًا في قائمة الانتظار الافتراضية في انتظار تفاعل موظف خدمة العملاء.</li>
+<li>متوسط الانتظار (دقيقة:ثانية): يعرض متوسط وقت الانتظار للعملاء الذين ينتظرون عادةً أكثر من متوسط وقت الانتظار المقبول، وهو الوقت الذي تم ضبطه من قِبل المسؤول (الوقت الافتراضي هو 10 دقائق).</li>
+<li>أطول انتظار (دقيقة:ثانية): يشير إلى وقت انتظار العميل الذي انتظر أطول فترة انتظار.</li>
+</ul>
+<h2 id="real-time-monitor-track-agents-performance-_3">التفاعلات المعالجة</h2>
+<p>ضمن بطاقة "التفاعلات المعالجة"، يمكن للمشرفين عرض الإحصائيات التالية في الوقت الفعلي حول المكالمات التي تمت معالجتها لليوم الحالي:</p>
+<ul>
+<li>التفاعلات المعالجة (#): يمثل هذا العدد الإجمالي للمكالمات التي تم الرد عليها من قبل موظفين خدمة العملاء، ولا يشمل المكالمات الفائتة.</li>
+<li>متوسط وقت الاستجابة (دقيقة:ثانية): يوضح متوسط الوقت المستغرق لبداية الرد على مكالمات العملاء.</li>
+<li>متوسط وقت المكالمة (دقيقة:ثانية): يمثل متوسط مدة المكالمات التي يديرها (يتفاعل معها) موظفين خدمة العملاء.</li>
+<li>المكالمات الفائتة (#): يعرض هذا العدد الإجمالي للمكالمات التي تركها العملاء.</li>
+</ul>
+<h2 id="real-time-monitor-track-agents-performance-_4">الفريق (موظفو خدمة العملاء)</h2>
+<p>تمكّن بطاقة "الموظفون" المشرفين من عرض الإحصائيات التالية في الوقت الفعلي حول موظفين خدمة العملاء لليوم الحالي:</p>
+<ul>
+<li>الموظفون (#): يعرض هذا العدد الإجمالي لموظفين خدمة العملاء داخل الفريق.</li>
+<li>الموظفون الجاهزون للإتصال (#): يمثل هذا العدد الإجمالي لموظفين خدمة العملاء الجاهزين لتلقي مكالمات العملاء.</li>
+<li>الموظفون المتوفرون على المنصة (#): يشير هذا إلى إجمالي عدد موظفين خدمة العملاء النشطين والمتوفرين حالياً داخل النظام.</li>
+<li>الموظفون المشغولون (#): يشير هذا إلى إجمالي عدد موظفين خدمة العملاء المشغولين حالياً بمكالمات العملاء.</li>
+</ul>
+<h2 id="real-time-monitor-track-agents-performance-_5">المواعيد اليوم</h2>
+<p>ضمن بطاقة "المواعيد اليوم"، يمكن للمشرفين عرض الإحصائيات التالية في الوقت الفعلي حول المواعيد الأخيرة والتالية لليوم الحالي:</p>
+<ul>
+<li>المواعيد اليوم (#): يمثل هذا العدد الإجمالي لجميع المواعيد في الوقت الحالي.</li>
+<li>الموعد الأخير : يشير هذا إلى الفترة الزمنية المخصصة لآخر موعد في اليوم.</li>
+<li>الموعد التالي: يمثل ذلك الفترة الزمنية المخصصة للموعد القادم التالي.</li>
+</ul>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Team-monitoring.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="مراقبة الفريق" src="../assets/Real-Time-Monitor/Team-monitoring.jpg" title="مراقبة الفريق" /></a></p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة (مساحة العمل الخاصة بي)</a></li>
+</ul></section><section class="print-page" id="real-time-monitor-monitoring-current-interactions"><h1 id="real-time-monitor-monitoring-current-interactions-_1">تتبع تفاعلات ومواعيد الفريق</h1>
+<hr />
+<p>تسمح لك هذه الميزة بمراقبة جميع تفاعلات ومواعيد الفريق الخاص بك وتنقسم إلى قسمين هما:</p>
+<ul>
+<li>حالة الفريق: تقدم لك معرفة حالة تواجد الفريق وإحصائيات حول رضا العملاء وعدد المكالمات التي تمت معالجتها لكل موظف.</li>
+<li>مواعيد الفريق: تقدم قائمة بجميع المواعيد التي تم حجزها من قبل العملاء ومعرفة الحالة الحالية لكل موعد.</li>
+</ul>
+<h2 id="real-time-monitor-monitoring-current-interactions-_2">حالة الفريق</h2>
+<p>يسمح قسم "حالة الفريق" للمشرفين بتتبع تفاعلات كل عضو من أعضاء الفريق (موظف خدمة العملاء) في الوقت الفعلي.</p>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يمكنك تصفية تفاعلات فريقك حسب "هذا الشهر" أو "اليوم" أو "هذا الأسبوع" أو "الشهر الماضي".</p>
+</div>
+<p>جدول حالة الفريق يشمل المعلومات التالية:</p>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>اسم موظف خدمة العملاء</td>
+<td>هذا هو الاسم الكامل للوكيل، بصيغة: الاسم الأول، اسم العائلة.</td>
+</tr>
+<tr>
+<td>الحالة الحالية</td>
+<td>يُظهر هذا حالة موظف خدمة العملاء في الوقت الفعلي والوقت، مع الإشارة إلى ما إذا كان متصلاً بالإنترنت أو جاهزًا للمكالمات أو في مكالمة حاليًا أو غير متصل.</td>
+</tr>
+<tr>
+<td>وقت تسجيل الدخول</td>
+<td>هذا يعرض تاريخ ووقت تسجيل دخول موظف خدمة العملاء إلى النظام.</td>
+</tr>
+<tr>
+<td>معالجة</td>
+<td>هذا هو إجمالي عدد المكالمات التي تعامل معها موظف خدمة العملاء.</td>
+</tr>
+<tr>
+<td>متوسط وقت المكالمة (ثانية)</td>
+<td>هذا هو "متوسط وقت معالجة المكالمات" للوكيل بالثواني.</td>
+</tr>
+<tr>
+<td>رضا العملاء</td>
+<td>يعرض هذا تقييم العميل بناءً على نتائج استبيان التقييم بعد التفاعل، وهو تقييم من 1 (أدنى تقييم) إلى 5 (أعلى تقييم).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>تشير الألوان الموجودة في الحالة الحالية إلى فترتي البداية والنهاية. حيث يشير اللون الأخضر إلى 0 إلى دقيقتين، والأصفر يشير إلى دقيقتين إلى 4 دقائق، والأحمر إلى 4 إلى أعلى.</p>
+</div>
+<p>يمكنك أيضًا الإطلاع على إحصائيات ورسوم بيانية للتفاعلات الخاصة بالفريق على النحو التالي:</p>
+<ul>
+<li>
+<p>رضا العملاء للفريق (%): يعرض النسبة المئوية لنتيجة رضا العملاء من أصل ١٠٠٪ بناءً على نتائج الاستبيان لكامل الفريق.</p>
+</li>
+<li>
+<p>توافر الفريق (%): يعرض بيانات عن  نسبة مدى التوافر لفريقك. عن طريق حساب النسبة بين إجمالي وقت الاستعداد ووقت العمل لفترات محددة (اليوم، وهذا الأسبوع، وهذا الشهر، والشهر الماضي). يشمل وقت الجاهزية وقت العمل تحت الطلب والوقت المتاح، بينما يشمل وقت العمل أوقات العمل وقت الاستدعاء ووقت التوافر ووقت الاتصال بالإنترنت ووقت عدم الإزعاج وأوقات الراحة.</p>
+</li>
+<li>
+<p>متوسط وقت المكالمات للفريق  (ساعة:دقيقة:ثواني): يعرض متوسط وقت المعالجة لجميع السجلات (المكالمات) لفريقك، مقيسًا بالساعات والدقائق والثواني.</p>
+</li>
+<li>
+<p>وقت الدخول للفريق (ساعة:دقيقة:ثواني): يعرض إجمالي وقت تسجيل الدخول من لحظة تسجيل الدخول إلى الوقت الحالي لفريقك، مقيسًا بالساعات والدقائق والثواني.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Team-status.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="حالة الفريق" src="../assets/Real-Time-Monitor/Team-status.jpg" title="حالة الفريق" /></a></p>
+<h3 id="real-time-monitor-monitoring-current-interactions--">ما هي الإجراءات التي يمكنني اتخاذها لمراقبة التفاعل الحالي (أيقونة ٣ نقاط - <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 8.5a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m-5.5 0A1.5 1.5 0 0 0 5 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 12a1.5 1.5 0 0 0-1.5-1.5m11 0A1.5 1.5 0 0 0 16 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 19 12a1.5 1.5 0 0 0-1.5-1.5Z"/></svg></span>)؟</h3>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Actions.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="left" alt="إجراءات التفاعل" src="../assets/Real-Time-Monitor/Actions.jpg" title="إجراءات التفاعل" width="200," /></a></p>
+<p>في قسم "حالة الفريق"، يمكن للمشرفين تنفيذ بعض الإجراءات من خلال النقر على أيقونة الـ ٣ نقاط (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 8.5a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m-5.5 0A1.5 1.5 0 0 0 5 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 12a1.5 1.5 0 0 0-1.5-1.5m11 0A1.5 1.5 0 0 0 16 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 19 12a1.5 1.5 0 0 0-1.5-1.5Z"/></svg></span>). تتوافر إجراءات مثل "الاستماع" أو "الهمس" أو "دخول فوري" أثناء التفاعل النشط.</p>
+<ul>
+<li>الاستماع: تسمح هذه الميزة للمشرف بالاستماع بصمت إلى مكالمة تم إجراؤها أو الرد عليها من قبل موظف خدمة العملاء. يمكن أن يساعد ذلك في تقييم أداء موظف خدمة العملاء وفهم تفاعلات العملاء.</li>
+<li>الهمس: تتيح هذه الميزة للمشرف تقديم المشورة والتوجيه المباشر للوكيل أثناء المكالمة. يتم إلغاء كتم صوت خط المسؤول، ولكن يتم توصيل الصوت إلى موظف خدمة العملاء فقط، وبالتالي عدم مقاطعة المكالمة.</li>
+<li>الدخول الفوري: تتيح هذه الميزة للمشرفين الانضمام إلى مكالمة مباشرة، مما يجعلها محادثة ثلاثية. هذا مفيد بشكل خاص في المواقف التي قد يحتاج فيها موظف خدمة العملاء إلى المساعدة في التعامل مع مكالمة صعبة.</li>
+</ul>
+<h2 id="real-time-monitor-monitoring-current-interactions-_3">مواعيد الفريق</h2>
+<p>يسمح قسم "مواعيد الفريق" للمشرفين بتتبع جميع المواعيد داخل المنظمة (جميع مواعيد العملاء) في الوقت الفعلي.</p>
+<p>جدول مواعيد الفريق يشمل المعلومات التالية:</p>
+<table>
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>اسم العميل</td>
+<td>هذا هو الاسم الكامل للعميل، بصيغة: الاسم الأول، اسم العائلة.</td>
+</tr>
+<tr>
+<td>وقت الموعد</td>
+<td>هذا يعرض تاريخ ووقت الموعد الذي تم حجزه من قبل العميل.</td>
+</tr>
+<tr>
+<td>معلومات العميل</td>
+<td>هذا يعرض تفاصيل ومعلومات العميل بالكامل.</td>
+</tr>
+<tr>
+<td>حالة إكمال المكالمة</td>
+<td>هذا يعرض حالة المكالمة إذا كانت قادمة أو تم إكمالها أو أعيدت جدولتها أو تم إلغائها.</td>
+</tr>
+<tr>
+<td>إجراءات (أيقونة ٣ نقاط - <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 8.5a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m-5.5 0A1.5 1.5 0 0 0 5 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 12a1.5 1.5 0 0 0-1.5-1.5m11 0A1.5 1.5 0 0 0 16 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 19 12a1.5 1.5 0 0 0-1.5-1.5Z"/></svg></span>)</td>
+<td>يمكنك إتخاذ بعض الإجراءات مثل إلغاء الموعد مع توضيح السبب.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Team-appointments.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="مواعيد الفريق" src="../assets/Real-Time-Monitor/Team-appointments.jpg" title="مواعيد الفريق" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>يمكنك كمشرف تصدير المواعيد عن طريق تحديد تواريخ البدء والانتهاء، ثم النقر فوق تصدير لتحميل مواعيد الفريق كملف Excel.</p>
+</div>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Export_Appointments.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="تصدير المواعيد" src="../assets/Real-Time-Monitor/Export_Appointments.jpg" title="تصدير المواعيد" /></a></p>
+<h3 id="real-time-monitor-monitoring-current-interactions--_1">ما هي الإجراءات التي يمكنني اتخاذها لإدارة المواعيد (أيقونة ٣ نقاط - <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 8.5a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m-5.5 0A1.5 1.5 0 0 0 5 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 12a1.5 1.5 0 0 0-1.5-1.5m11 0A1.5 1.5 0 0 0 16 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 19 12a1.5 1.5 0 0 0-1.5-1.5Z"/></svg></span>)؟</h3>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Appointments_Actions.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="left" alt="إجراءات المواعيد" src="../assets/Real-Time-Monitor/Appointments_Actions.jpg" title="إجراءات المواعيد" width="100," /></a>
+في قسم "مواعيد الفريق"، يمكن للمشرفين تنفيذ إجراء "إلغاء" الموعد المحدد عن  طريق إختيار الموعد ثم إختيار إلغاء وتأكيد الإجراء.</p>
+<p>مقالات متعلقة:</p>
+<ul>
+<li><a href="#getting-started-my-dashboard">لوحة القيادة (مساحة العمل الخاصة بي)</a></li>
+</ul></section><h1 class='nav-section-title-end'>Ended: مراقبة الفريق (للمشرفين)</h1><section class="print-page" id="faqs-faqs"><h1 id="faqs-faqs-_1">الأسئلة الشائعة</h1>
+<p>إجابات سريعة عن الأسئلة الأكثر تكرارًا. اختر دورك للانتقال مباشرة إلى الأسئلة التي تهمك.</p>
+<div class="gc-faq-nav">
+<p><a class="gc-faq-chip" href="#faqs-faqs-general"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z"/></svg></span> أسئلة عامة</a>
+<a class="gc-faq-chip" href="#faqs-faqs-agents"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1c-5 0-9 4-9 9v7a3 3 0 0 0 3 3h3v-8H5v-2a7 7 0 0 1 7-7 7 7 0 0 1 7 7v2h-4v8h4v1h-7v2h6a3 3 0 0 0 3-3V10c0-5-4.03-9-9-9Z"/></svg></span> موظفو خدمة العملاء</a>
+<a class="gc-faq-chip" href="#faqs-faqs-customers"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 5a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c2.67 0 8 1.34 8 4v2H1v-2c0-2.66 5.33-4 8-4m7.76-9.64c2.02 2.2 2.02 5.25 0 7.27l-1.68-1.69c.84-1.18.84-2.71 0-3.89l1.68-1.69M20.07 2c3.93 4.05 3.9 10.11 0 14l-1.63-1.63c2.77-3.18 2.77-7.72 0-10.74L20.07 2Z"/></svg></span> العملاء</a>
+<a class="gc-faq-chip" href="#faqs-faqs-supervisors"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16V4H3v12h18m0-14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7v2h2v2H8v-2h2v-2H3a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2h18M5 6h9v5H5V6m10 0h4v2h-4V6m4 3v5h-4V9h4M5 12h4v2H5v-2m5 0h4v2h-4v-2Z"/></svg></span> المشرفون</a>
+<a class="gc-faq-chip" href="#faqs-faqs-administrators"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4m0 2.18 7 3.12v4.92c0 1.7-.5 3.43-1.35 4.95C16 14.94 13.26 14.5 12 14.5c-1.26 0-4 .44-5.65 1.67C5.5 14.65 5 12.92 5 11.22V6.3l7-3.12M12 6a3.5 3.5 0 0 0-3.5 3.5A3.5 3.5 0 0 0 12 13a3.5 3.5 0 0 0 3.5-3.5A3.5 3.5 0 0 0 12 6m0 2a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8m0 8.5c1.57 0 3.64.61 4.53 1.34C15.29 19.38 13.7 20.55 12 21c-1.7-.45-3.29-1.62-4.53-3.16.9-.73 2.96-1.34 4.53-1.34Z"/></svg></span> مسؤولو النظام</a></p>
+</div>
+<h2 id="faqs-faqs-general">أسئلة عامة</h2>
+<details class="question" open="open">
+<summary>ما هو نظام جلوبيتل كونكت؟</summary>
+<p>جلوبيتل كونكت منصة للتواصل مع العملاء عبر الفيديو. يمكن للعميل حجز موعد أو طلب دعم فوري، ثم التحدث وجهًا لوجه مع موظف خدمة العملاء عبر الفيديو والمحادثة ومشاركة الملفات.</p>
+<p>يوفر النظام بوابتين:</p>
+<ul>
+<li><strong>بوابة موظفي خدمة العملاء والمشرفين</strong>: للتعامل مع مكالمات العملاء ومتابعة الفريق. <a href="#getting-started-login">ابدأ من هنا</a></li>
+<li><strong>بوابة الإدارة</strong>: لإدارة المستخدمين والفرق والمهارات وقواعد التوجيه وإعدادات النظام. <a href="#en-administration-log-in">دليل الإدارة (بالإنجليزية)</a></li>
+</ul>
+</details>
+<details class="question">
+<summary>كيف أفتح نظام جلوبيتل كونكت؟</summary>
+<ol>
+<li>افتح متصفح الويب (يُنصح باستخدام جوجل كروم).</li>
+<li>أدخل العنوان الذي زودك به مسؤول النظام بالصيغة التالية: <code>http://Server_Name:Port/gc-mobile</code>.</li>
+<li>سجّل الدخول باستخدام <strong>اسم المستخدم</strong> و<strong>كلمة المرور</strong>.</li>
+</ol>
+<p><a class="gc-faq-more" href="#getting-started-login">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>ما المتصفح الذي يجب أن أستخدمه؟</summary>
+<p>نوصي باستخدام <strong>جوجل كروم (Google Chrome)</strong> على ويندوز أو ماك أو لينكس. <a href="https://www.google.com/chrome/">تنزيل كروم</a>.</p>
+</details>
+<details class="question">
+<summary>كيف أغيّر لغة النظام؟</summary>
+<p>انقر على القائمة المنسدلة بجوار صورة ملفك الشخصي في رأس الصفحة، ثم اختر <strong>English</strong> أو <strong>العربية</strong>.</p>
+</details>
+<details class="question">
+<summary>كيف أغيّر كلمة المرور؟</summary>
+<ol>
+<li>انقر على القائمة المنسدلة بجوار صورة ملفك الشخصي في رأس الصفحة.</li>
+<li>اختر <strong>تغيير كلمة المرور</strong>.</li>
+<li>أدخل كلمة المرور الحالية، ثم أدخل كلمة المرور الجديدة وأكّدها، وانقر على <strong>حفظ</strong>.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">تلميح</p>
+<p>استخدم ثمانية أحرف على الأقل، تتضمن رقمًا وحرفًا خاصًا وحرفًا كبيرًا وحرفًا صغيرًا.</p>
+</div>
+<p><a class="gc-faq-more" href="#my-profile-change-password">اقرأ الدليل الكامل</a></p>
+</details>
+<h2 id="faqs-faqs-agents">موظفو خدمة العملاء</h2>
+<details class="question">
+<summary>هل أحتاج إلى كاميرا وميكروفون؟</summary>
+<p>نعم. يجب أن يحتوي جهازك على كاميرا وميكروفون يعملان (مدمجين أو خارجيين)، وبدونهما لن تتمكن من استقبال مكالمات العملاء.</p>
+<p><a class="gc-faq-more" href="#getting-started-testing-your-camera-and-microphone">اختبر الكاميرا والميكروفون</a></p>
+</details>
+<details class="question">
+<summary>لماذا يجب أن أشارك الشاشة بالكامل؟</summary>
+<p>مشاركة الشاشة مطلوبة <strong>لأغراض مراقبة الجودة</strong>، إذ يسجّل النظام نشاط شاشتك أثناء العمل. لن تتمكن من فتح لوحة القيادة أو التعامل مع المكالمات قبل مشاركة الشاشة بالكامل.</p>
+<p>عند ظهور النافذة المنبثقة بعد تسجيل الدخول:</p>
+<ol>
+<li>اختر علامة التبويب <strong>الشاشة بأكملها</strong>.</li>
+<li>حدد شاشتك.</li>
+<li>انقر على <strong>مشاركة</strong>.</li>
+</ol>
+<p><a class="gc-faq-more" href="#getting-started-share-screen">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>كيف أبدأ في استقبال المكالمات؟</summary>
+<p>انقر على زر <strong>جاهز</strong> أسفل لوحة ملفك الشخصي في لوحة القيادة. ما لم تكن في حالة "جاهز"، يعتبرك النظام مشغولًا ولن يرسل إليك أي مكالمات.</p>
+<p><a class="gc-faq-more" href="#getting-started-getting-ready-for-engagements">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>لا تصلني أي مكالمات، ماذا أتحقق منه؟</summary>
+<p>راجع القائمة التالية:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> حالتك <strong>جاهز</strong>. تفويت مكالمة يغيّر حالتك إلى <strong>غير جاهز</strong>، لذا اضغط <strong>جاهز</strong> مرة أخرى.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> شاركت <strong>الشاشة بأكملها</strong> بعد تسجيل الدخول.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> الكاميرا والميكروفون يعملان بشكل صحيح. <a href="#getting-started-testing-your-camera-and-microphone">أجرِ الاختبار</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> تستخدم أحدث إصدار من جوجل كروم.</li>
+</ul>
+<p>إذا كان كل شيء سليمًا ولا تزال المكالمات لا تصل، تواصل مع مشرفك أو مسؤول النظام.</p>
+</details>
+<details class="question">
+<summary>ماذا يحدث إذا فاتتني مكالمة أو رفضتها؟</summary>
+<ul>
+<li><strong>مكالمة فائتة</strong>: إذا لم تُجب خلال <strong>5 ثوانٍ</strong>، تُحوَّل المكالمة إلى موظف آخر جاهز وتتغير حالتك إلى <strong>غير جاهز</strong>.</li>
+<li><strong>مكالمة مرفوضة</strong>: تعود المكالمة إلى قائمة الانتظار ويُسجَّل الرفض في النظام. لا ترفض المكالمات إلا في الحالات الطارئة.</li>
+</ul>
+<p><a class="gc-faq-more" href="#handling-interactions-receiving-a-new-interaction">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>ماذا يمكنني أن أفعل أثناء المكالمة؟</summary>
+<p>من غرفة الاجتماع يمكنك:</p>
+<ul>
+<li><a href="#handling-interactions-chat">المحادثة مع العميل</a></li>
+<li><a href="#handling-interactions-exchanging-documents">مشاركة الملفات</a></li>
+<li><a href="#handling-interactions-screen-sharing">مشاركة شاشتك</a></li>
+<li><a href="#handling-interactions-change-background-and-blur">تغيير الخلفية أو تمويهها</a></li>
+<li><a href="#handling-interactions-call-transfer">تحويل المكالمة إلى موظف آخر</a></li>
+<li><a href="#handling-interactions-conference-room-functions">دعوة آخرين إلى اجتماع جماعي</a></li>
+</ul>
+</details>
+<details class="question">
+<summary>كيف أرسل ملفًا إلى العميل؟</summary>
+<ol>
+<li>انقر على <strong>المحادثة</strong> في غرفة الاجتماع.</li>
+<li>انقر على أيقونة <strong>ملف</strong> واختر الملف.</li>
+<li>اضغط <strong>Enter</strong> لإرساله.</li>
+</ol>
+<p>يمكنك إرسال الصور ومقاطع الفيديو والمستندات (PDF وDOCX وXLSX) والملفات المضغوطة (ZIP).</p>
+<div class="admonition warning">
+<p class="admonition-title">تنبيه</p>
+<p>نزّل الملفات المهمة قبل انتهاء المكالمة، فملفات المحادثة تُحذف عند انتهائها.</p>
+</div>
+<p><a class="gc-faq-more" href="#handling-interactions-exchanging-documents">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>كيف أغيّر صورتي الشخصية؟</summary>
+<p>في قسم الملف الشخصي داخل لوحة القيادة، انقر على <strong>أيقونة الكاميرا</strong> بجوار صورتك والتقط صورة جديدة. تظهر هذه الصورة للعملاء أثناء المكالمات.</p>
+<p><a class="gc-faq-more" href="#my-profile-modify-profile-photo">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>أين أجد مواعيدي القادمة؟</summary>
+<p>افتح علامة التبويب <strong>مواعيدي</strong> في لوحة القيادة، حيث يظهر وقت كل موعد وحالته: قادم أو مُعاد جدولته أو مكتمل أو ملغى.</p>
+<p><a class="gc-faq-more" href="#getting-started-appointments">اقرأ الدليل الكامل</a></p>
+</details>
+<h2 id="faqs-faqs-customers">العملاء</h2>
+<details class="question">
+<summary>كيف أطلب اجتماعًا مع موظف خدمة العملاء؟</summary>
+<ol>
+<li>افتح الرابط الذي زودك به فريق خدمة العملاء.</li>
+<li>أدخل بياناتك.</li>
+<li>اختر نوع الاجتماع:<ul>
+<li><strong>موعد</strong>: اختر التاريخ والوقت المناسبين لك.</li>
+<li><strong>دعم فوري</strong>: تحدّث مع موظف خدمة العملاء الآن.</li>
+</ul>
+</li>
+<li>انقر على <strong>حجز موعد</strong>، وستظهر نافذة منبثقة تحتوي على رابط الاجتماع.</li>
+</ol>
+<p><a class="gc-faq-more" href="#customer-access-requesting-a-meeting">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>هل سيصلني رابط الاجتماع عبر البريد الإلكتروني؟</summary>
+<p>نعم. بعد الحجز ستصلك رسالة بريد إلكتروني تحتوي على رابط الاجتماع وتاريخه ووقته وبياناتك.</p>
+</details>
+<details class="question">
+<summary>كيف أنضم إلى الاجتماع؟</summary>
+<ol>
+<li>افتح رابط الاجتماع في المتصفح.</li>
+<li>شغّل الميكروفون والكاميرا.</li>
+<li>انقر على <strong>أبدء الجلسة</strong> لبدء الحديث مع موظف خدمة العملاء.</li>
+</ol>
+<p><a class="gc-faq-more" href="#customer-access-starting-a-meeting">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>ماذا يمكنني أن أفعل أثناء الاجتماع؟</summary>
+<p>يمكنك تشغيل الكاميرا أو إيقافها، وكتم الميكروفون، و<a href="#handling-interactions-screen-sharing">مشاركة شاشتك</a>، و<a href="#handling-interactions-change-background-and-blur">تغيير الخلفية</a>، و<a href="#handling-interactions-chat">المحادثة</a> و<a href="#handling-interactions-exchanging-documents">تبادل الملفات</a> مع موظف خدمة العملاء.</p>
+<p>عند إنهاء المكالمة يمكنك تقييم تجربتك من 1 (الأقل) إلى 5 (الأعلى).</p>
+</details>
+<h2 id="faqs-faqs-supervisors">المشرفون</h2>
+<details class="question">
+<summary>كيف أتابع أداء فريقي؟</summary>
+<p>استخدم <strong>مراقبة الفريق</strong> من أجل:</p>
+<ul>
+<li><a href="#real-time-monitor-track-agents-performance">تتبع أداء كل موظف</a>: عدد المكالمات ومتوسط مدة المعالجة ورضا العملاء.</li>
+<li><a href="#real-time-monitor-monitoring-current-interactions">متابعة حالة الفريق ومواعيده مباشرة</a>، مع إمكانية الفلترة حسب اليوم أو الأسبوع أو الشهر الحالي أو الشهر الماضي.</li>
+</ul>
+</details>
+<details class="question">
+<summary>هل يمكنني الاستماع إلى مكالمة جارية لموظف أو الانضمام إليها؟</summary>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Actions.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="left" alt="إجراءات التفاعل" src="../assets/Real-Time-Monitor/Actions.jpg" title="إجراءات التفاعل" width="65," /></a>
+نعم. من علامة التبويب <strong>حالة الفريق</strong>، انقر على أيقونة الخيارات (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 8.5a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m-5.5 0A1.5 1.5 0 0 0 5 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 12a1.5 1.5 0 0 0-1.5-1.5m11 0A1.5 1.5 0 0 0 16 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 19 12a1.5 1.5 0 0 0-1.5-1.5Z"/></svg></span>) بجوار المكالمة الجارية:</p>
+<ul>
+<li><strong>الاستماع</strong>: استمع إلى المكالمة دون أن يُسمع صوتك.</li>
+<li><strong>الهمس</strong>: وجّه الموظف بحيث يسمعك هو فقط.</li>
+<li><strong>الانضمام الفوري</strong>: انضم إلى المكالمة لتصبح محادثة ثلاثية.</li>
+</ul>
+<p><a class="gc-faq-more" href="#real-time-monitor-monitoring-current-interactions">اقرأ الدليل الكامل</a></p>
+</details>
+<details class="question">
+<summary>كيف ألغي موعد أحد العملاء؟</summary>
+<p><a class="glightbox" href="../assets/Real-Time-Monitor/Appointments_Actions.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="left" alt="إجراءات المواعيد" src="../assets/Real-Time-Monitor/Appointments_Actions.jpg" title="إجراءات المواعيد" width="65," /></a>
+افتح علامة التبويب <strong>مواعيد الفريق</strong>، وانقر على أيقونة الخيارات (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 8.5a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m-5.5 0A1.5 1.5 0 0 0 5 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 12a1.5 1.5 0 0 0-1.5-1.5m11 0A1.5 1.5 0 0 0 16 12a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 19 12a1.5 1.5 0 0 0-1.5-1.5Z"/></svg></span>) بجوار الموعد، ثم اختر <strong>إلغاء</strong> وأكّد. سيصل إشعار بالإلغاء إلى العميل.</p>
+</details>
+<details class="question">
+<summary>هل يمكنني تصدير مواعيد الفريق؟</summary>
+<p>نعم. من <strong>مواعيد الفريق</strong> اختر تاريخ البداية والنهاية، ثم انقر على <strong>تصدير</strong> لتنزيل ملف Excel.</p>
+</details>
+<details class="question">
+<summary>هل يحتاج المشرف إلى ضبط حالته على "جاهز"؟</summary>
+<p>نعم، إذا كنت تستقبل مكالمات محوّلة من فريقك. وإلا سيعتبرك النظام مشغولًا ولن تصلك المكالمات المحوّلة.</p>
+</details>
+<h2 id="faqs-faqs-administrators">مسؤولو النظام</h2>
+<div class="admonition info">
+<p class="admonition-title">ملاحظة</p>
+<p>دليل بوابة الإدارة متوفر باللغة الإنجليزية فقط.</p>
+</div>
+<details class="question">
+<summary>ماذا يمكنني أن أدير من بوابة الإدارة؟</summary>
+<ul>
+<li><a href="#en-administration-my-dashboard">إحصائيات لوحة القيادة</a></li>
+<li>المستخدمون والأدوار والفرق والمهارات: <a href="#en-administration-user-management-users-management">المستخدمون</a>، <a href="#en-administration-user-management-roles-management">الأدوار</a>، <a href="#en-administration-user-management-teams-management">الفرق</a>، <a href="#en-administration-user-management-skills-management">المهارات</a></li>
+<li><a href="#en-administration-system-management-system-settings">إعدادات النظام</a> و<a href="#en-administration-system-management-customer-form">نموذج العميل</a> و<a href="#en-administration-system-management-routing-rules">قواعد التوجيه</a></li>
+<li><a href="#en-administration-about-system">تفاصيل الترخيص</a></li>
+</ul>
+</details>
+<details class="question">
+<summary>كيف أضيف مستخدمًا جديدًا؟</summary>
+<ol>
+<li>انتقل إلى <strong>إدارة المستخدمين</strong> &gt; <strong>المستخدمون</strong>.</li>
+<li>انقر على أيقونة الإضافة (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.75 1h10.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25V2.75C1 1.784 1.784 1 2.75 1Zm10.5 1.5H2.75a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM8 4a.75.75 0 0 1 .75.75v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5A.75.75 0 0 1 8 4Z"/></svg></span>).</li>
+<li>أدخل بيانات المستخدم واختر مجموعته وفريقه ومهاراته.</li>
+<li>انقر على <strong>حفظ</strong>.</li>
+</ol>
+<p><a class="gc-faq-more" href="#en-administration-user-management-users-management">اقرأ الدليل الكامل (بالإنجليزية)</a></p>
+</details>
+<details class="question">
+<summary>أين أجد حدود الترخيص الخاص بي؟</summary>
+<p>افتح <strong>عن النظام</strong> من القائمة الجانبية لعرض إصدار المنتج والحد الأقصى لعدد موظفي خدمة العملاء المسموح به في ترخيصك.</p>
+<p><a class="gc-faq-more" href="#en-administration-about-system">اقرأ الدليل الكامل (بالإنجليزية)</a></p>
+</details>
+<div class="gc-help">
+<h2 id="faqs-faqs-help">هل ما زلت بحاجة إلى مساعدة؟</h2>
+<p>اسأل المساعد الذكي الذي يجيب من هذا الدليل، أو تواصل مع فريق جلوبيتل.</p>
+<p><a class="md-button md-button--primary gc-help__chat" data-gc-chat-open="true" href="#faqs-faqs-"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-1.26 2.75L15 5l2.74 1.26L19 9l1.25-2.74L23 5l-2.75-1.25M9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5M19 15l-1.26 2.74L15 19l2.74 1.25L19 23l1.25-2.75L23 19l-2.75-1.26"/></svg></span> اسأل المساعد الذكي</a>
+<a class="md-button" href="mailto:info@globitel.com"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6m-2 0-8 5-8-5h16m0 12H4V8l8 5 8-5v10Z"/></svg></span> راسل الدعم</a></p>
+</div></section></div>
+
+<!-- Source file information -->
+<!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Render date of last update -->
+
+
+<!-- Render date of creation -->
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<!-- Render authors -->
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<!-- Render committers from GitHub -->
+
+
+<!-- Render committers from GitLab -->
+
+
+<!-- Render committers -->
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<!-- Determine date of last update -->
+
+
+<!-- Source file information -->
+
+
+<!-- Was this page helpful? -->
+<!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine feedback configuration -->
+
+  
+
+
+<!-- Determine whether to show feedback -->
+
+
+<!-- Was this page helpful? -->
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        هل كان المحتوي مفيد؟
+      </legend>
+      <div class="md-feedback__inner">
+
+        <!-- Feedback ratings -->
+        <div class="md-feedback__list">
+          
+            <button
+              class="md-feedback__icon md-icon"
+              type="submit"
+              title="نعم"
+              data-md-value="1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9h4m4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21H9m0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03V19Z"/></svg>
+            </button>
+          
+            <button
+              class="md-feedback__icon md-icon"
+              type="submit"
+              title="يحتاج تحسين"
+              data-md-value="0"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12h-4M15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3h9m0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97V5Z"/></svg>
+            </button>
+          
+        </div>
+
+        <!-- Feedback rating notes (shown after submission) -->
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+
+              <!-- Determine title -->
+              
+                
+              
+
+              <!-- Replace {url} and {title} placeholders in note -->
+              شكرًا على التقييم!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+
+              <!-- Determine title -->
+              
+                
+              
+
+              <!-- Replace {url} and {title} placeholders in note -->
+              شكرًا على الإفادة! يمكنك مساعدتنا عن طريق توضيح ملاحظاتكم من خلال <a href="https://forms.gle/aD13KAwxMpaswxTy8" target="_blank" rel="noopener">نموذج التقييم هنا</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+<!-- Comment system -->
+<!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Comment system -->
+                
+
+              </article>
+            </div>
+          
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- User-preference: link content tabs -->
+
+
+<!-- Switch to content tab target -->
+<script>
+  var target = document.getElementById(location.hash.slice(1))
+  if (target && target.name)
+    target.checked = target.name.startsWith("__tabbed_")
+</script>
+        </div>
+        
+          <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Progress indicator -->
+<button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  عد إلى الأعلى
+</button>
+        
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Copyright and theme information -->
+<div class="md-copyright">
+  
+  
+    
+    كُتبَ بحب 💛 @
+    <a href="https://www.globitel.com/" target="_blank" rel="noopener">جلوبيتل</a>
+    |
+    <a href="https://sonicar.tech/" target="_blank" rel="noopener">سونيكار</a>
+  
+</div>
+
+      <!-- Social links -->
+      
+        <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Social links -->
+<div class="md-social">
+  
+
+    <!-- Automatically set rel=me for Mastodon -->
+    
+    
+
+    <!-- Compute title and render link -->
+    
+    
+    <a
+      href="mailto:info@globitel.com"
+      target="_blank" rel="noopener"
+      title=""
+      class="md-social__link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48H48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0L0 176z"/></svg>
+    </a>
+  
+
+    <!-- Automatically set rel=me for Mastodon -->
+    
+    
+
+    <!-- Compute title and render link -->
+    
+    
+      
+      
+    
+    <a
+      href="https://www.facebook.com/Globitel.solutions"
+      target="_blank" rel="noopener"
+      title="www.facebook.com"
+      class="md-social__link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256z"/></svg>
+    </a>
+  
+
+    <!-- Automatically set rel=me for Mastodon -->
+    
+    
+
+    <!-- Compute title and render link -->
+    
+    
+      
+      
+    
+    <a
+      href="https://twitter.com/globitel_int"
+      target="_blank" rel="noopener"
+      title="twitter.com"
+      class="md-social__link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+
+    <!-- Automatically set rel=me for Mastodon -->
+    
+    
+
+    <!-- Compute title and render link -->
+    
+    
+      
+      
+    
+    <a
+      href="https://www.linkedin.com/company/globitel"
+      target="_blank" rel="noopener"
+      title="www.linkedin.com"
+      class="md-social__link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+
+    <!-- Automatically set rel=me for Mastodon -->
+    
+    
+
+    <!-- Compute title and render link -->
+    
+    
+      
+      
+    
+    <a
+      href="https://www.instagram.com/globitel_int/"
+      target="_blank" rel="noopener"
+      title="www.instagram.com"
+      class="md-social__link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+    </a>
+  
+
+    <!-- Automatically set rel=me for Mastodon -->
+    
+    
+
+    <!-- Compute title and render link -->
+    
+    
+      
+      
+    
+    <a
+      href="https://www.youtube.com/channel/UCZdq3XKSHNp2_utEKyf-FAg"
+      target="_blank" rel="noopener"
+      title="www.youtube.com"
+      class="md-social__link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "/ar/", "features": ["navigation.footer", "navigation.path", "search.suggest", "search.highlight", "search.share", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u062a\u0645 \u0627\u0644\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "clipboard.copy": "\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "search.result.more.one": "\u0623\u0643\u062b\u0631 \u0645\u0646 1 \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.more.other": "\u0623\u0643\u062b\u0631 \u0645\u0646 # \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.none": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0646\u062a\u0627\u0626\u062c", "search.result.one": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b \u0645\u0633\u062a\u0646\u062f \u0648\u0627\u062d\u062f", "search.result.other": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b # \u0645\u0633\u062a\u0646\u062f\u0627\u062a", "search.result.placeholder": "\u0627\u0643\u062a\u0628 \u0644\u0628\u062f\u0621 \u0627\u0644\u0628\u062d\u062b", "search.result.term.missing": "\u0645\u0641\u0642\u0648\u062f", "select.version": "\u0625\u062e\u062a\u0631 \u0627\u0644\u0625\u0635\u062f\u0627\u0631"}}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="../js/open_in_new_tab.js"></script>
+      
+    
+  <!-- AI assistant (Cloudflare Worker, see /chatbot-worker) -->
+  
+  
+    <script>
+      window.GC_CHATBOT = {"endpoint": "https://globitel-connect-chatbot.sonicar.workers.dev", "lang": "ar", "siteRoot": "/ar//", "suggestions": ["\u0643\u064a\u0641 \u0623\u0633\u062c\u0644 \u0627\u0644\u062f\u062e\u0648\u0644\u061f", "\u0643\u064a\u0641 \u0623\u062d\u0648\u0644 \u0627\u0644\u0645\u0643\u0627\u0644\u0645\u0629\u061f", "\u0643\u064a\u0641 \u0623\u0634\u0627\u0631\u0643 \u0634\u0627\u0634\u062a\u064a\u061f", "\u0643\u064a\u0641 \u0623\u063a\u064a\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631\u061f"]};
+    </script>
+    <script src="../assets/javascripts/chatbot.js" defer></script>
+  
+
+  </body>
+</html>
